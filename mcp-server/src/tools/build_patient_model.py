@@ -1,18 +1,15 @@
 """
 Tool: build_patient_model
 
-Constructs a computational patient model from FHIR data.
-This is the foundation tool that simulate_scenario and compare_interventions
-operate on.
-
-Round 2.5: Stub implementation that proves SHARP context extraction works.
-Round 3: Real FHIR data fetching and basic patient model construction.
-Round 4: Full system models with trajectories and risk scores.
+Round 2.7 (Reconnaissance): Fetches real FHIR data to discover what's
+available at Po's FHIR endpoint. This is a TEMPORARY exploratory version
+to inform Round 3's full implementation.
 """
 
 import json
 from typing import Annotated
 
+import httpx
 import structlog
 from mcp.server.fastmcp import Context
 from pydantic import Field
@@ -22,85 +19,117 @@ from src.sharp import SharpContextError, extract_sharp_context
 logger = structlog.get_logger(__name__)
 
 
+async def _fetch_fhir(url: str, token: str) -> dict | None:
+    """Fetch a FHIR resource. Returns None on 404, raises on other errors."""
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        try:
+            response = await client.get(
+                url,
+                headers={"Authorization": f"Bearer {token}", "Accept": "application/fhir+json"},
+            )
+            if response.status_code == 404:
+                return None
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPStatusError as e:
+            return {
+                "_error": f"HTTP {e.response.status_code}",
+                "_body": e.response.text[:500],
+            }
+        except Exception as e:
+            return {"_error": str(e)}
+
+
 async def build_patient_model(
     ctx: Context,
     model_depth: Annotated[
         str,
-        Field(
-            description=(
-                "'comprehensive' builds all physiological systems. "
-                "'focused' builds only systems specified in focus_systems."
-            ),
-            default="comprehensive",
-        ),
+        Field(description="comprehensive or focused", default="comprehensive"),
     ] = "comprehensive",
     lookback_months: Annotated[
         int,
-        Field(
-            description=(
-                "How many months of historical data to pull for "
-                "trajectory computation. Default 24 months."
-            ),
-            default=24,
-            ge=6,
-            le=60,
-        ),
+        Field(description="Months of history", default=24, ge=6, le=60),
     ] = 24,
 ) -> str:
     """
-    Build a computational patient model from the patient currently in SHARP context.
-
-    Returns:
-        JSON string containing the patient model (or stub response in Round 2.5)
+    Reconnaissance round: Fetch and report what FHIR data exists for the
+    patient in context.
     """
     try:
         sharp = extract_sharp_context(ctx)
     except SharpContextError as e:
-        logger.error("build_patient_model.no_context", error=str(e))
-        return json.dumps({
-            "error": "FHIR context required",
-            "message": str(e),
-            "hint": (
-                "This tool requires FHIR context. Make sure the user has "
-                "authorized FHIR access for this MCP server in Prompt Opinion."
-            ),
-        })
+        return json.dumps({"error": "FHIR context required", "message": str(e)})
 
     if not sharp.patient_id:
-        return json.dumps({
-            "error": "No patient in context",
-            "message": (
-                "A patient must be loaded in the workspace before calling "
-                "this tool. The X-Patient-ID header was not provided and "
-                "no patient claim was found in the FHIR access token."
-            ),
-        })
+        return json.dumps({"error": "No patient in context"})
+
+    patient_id = sharp.patient_id_only
+    base_url = sharp.fhir_url
+    token = sharp.fhir_token
+
+    # Strip "Bearer " prefix if present (we add it ourselves)
+    if token.lower().startswith("bearer "):
+        token = token[7:]
 
     logger.info(
-        "build_patient_model.invoked",
-        patient_id=sharp.patient_id_only,
-        model_depth=model_depth,
-        lookback_months=lookback_months,
+        "build_patient_model.recon_starting",
+        patient_id=patient_id,
+        fhir_url=base_url,
     )
 
-    # Round 2.5 stub response.
-    # Round 3 will fetch real FHIR data and return an actual patient model.
-    stub_response = {
-        "status": "stub",
-        "message": (
-            "build_patient_model is wired up correctly. SHARP context "
-            "extracted successfully. Real FHIR fetching coming in Round 3."
-        ),
-        "context_received": {
-            "patient_id": sharp.patient_id_only,
-            "fhir_url": sharp.fhir_url,
-            "has_token": bool(sharp.fhir_token),
-            "has_refresh_token": bool(sharp.refresh_token),
-        },
-        "parameters_received": {
-            "model_depth": model_depth,
-            "lookback_months": lookback_months,
-        },
+    # Fetch all relevant FHIR resources for this patient
+    resources_to_check = {
+        "Patient": f"{base_url}/Patient/{patient_id}",
+        "Conditions": f"{base_url}/Condition?patient={patient_id}",
+        "MedicationRequests": f"{base_url}/MedicationRequest?patient={patient_id}",
+        "MedicationStatements": f"{base_url}/MedicationStatement?patient={patient_id}",
+        "Observations_Labs": f"{base_url}/Observation?patient={patient_id}&category=laboratory",
+        "Observations_Vitals": f"{base_url}/Observation?patient={patient_id}&category=vital-signs",
+        "Observations_All": f"{base_url}/Observation?patient={patient_id}&_count=20",
+        "AllergyIntolerances": f"{base_url}/AllergyIntolerance?patient={patient_id}",
+        "Procedures": f"{base_url}/Procedure?patient={patient_id}",
+        "Immunizations": f"{base_url}/Immunization?patient={patient_id}",
+        "Encounters": f"{base_url}/Encounter?patient={patient_id}",
+        "CarePlans": f"{base_url}/CarePlan?patient={patient_id}",
     }
 
-    return json.dumps(stub_response, indent=2)
+    recon_results = {}
+    for label, url in resources_to_check.items():
+        result = await _fetch_fhir(url, token)
+        if result is None:
+            recon_results[label] = {"status": "not_found"}
+        elif "_error" in result:
+            recon_results[label] = {"status": "error", "details": result}
+        elif result.get("resourceType") == "Bundle":
+            entries = result.get("entry", [])
+            sample = entries[0] if entries else None
+            recon_results[label] = {
+                "status": "ok",
+                "total_count": result.get("total", len(entries)),
+                "returned_count": len(entries),
+                "sample_entry": sample,
+            }
+        else:
+            recon_results[label] = {
+                "status": "ok",
+                "resource_type": result.get("resourceType"),
+                "data": result,
+            }
+
+    logger.info("build_patient_model.recon_complete", resource_count=len(recon_results))
+
+    return json.dumps(
+        {
+            "_recon_mode": True,
+            "_message": (
+                "This is a temporary reconnaissance response showing what "
+                "FHIR data exists for the patient in context. Use this to "
+                "design the real patient model in Round 3."
+            ),
+            "patient_id": patient_id,
+            "fhir_url": base_url,
+            "resources_discovered": recon_results,
+        },
+        indent=2,
+        default=str,
+    )
