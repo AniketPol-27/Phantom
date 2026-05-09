@@ -1,0 +1,577 @@
+{
+  "resourceType": "Bundle",
+  "id": "maria-santos-bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "maria-santos-001",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2054-5",
+                  "display": "Black or African American"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Black or African American"
+              }
+            ]
+          },
+          {
+            "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2186-5",
+                  "display": "Not Hispanic or Latino"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "Not Hispanic or Latino"
+              }
+            ]
+          }
+        ],
+        "active": true,
+        "name": [
+          {
+            "use": "official",
+            "family": "Santos",
+            "given": ["Maria"]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "555-203-4471",
+            "use": "home"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1967-03-15",
+        "address": [
+          {
+            "use": "home",
+            "line": ["1842 Magnolia Avenue"],
+            "city": "Atlanta",
+            "state": "GA",
+            "postalCode": "30309",
+            "country": "US"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient/maria-santos-001"
+      }
+    },
+
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {
+          "coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]
+        },
+        "verificationStatus": {
+          "coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]
+        },
+        "category": [{
+          "coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]
+        }],
+        "code": {
+          "coding": [
+            {"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "E11.9", "display": "Type 2 diabetes mellitus without complications"},
+            {"system": "http://snomed.info/sct", "code": "44054006", "display": "Type 2 diabetes mellitus"}
+          ],
+          "text": "Type 2 diabetes mellitus"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "onsetDateTime": "2017-06-15T00:00:00Z",
+        "recordedDate": "2017-06-15T00:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Condition"}
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]}],
+        "code": {
+          "coding": [
+            {"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "N18.31", "display": "Chronic kidney disease, stage 3a"},
+            {"system": "http://snomed.info/sct", "code": "433144002", "display": "Chronic kidney disease stage 3A"}
+          ],
+          "text": "Chronic kidney disease stage 3A"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "onsetDateTime": "2023-03-10T00:00:00Z",
+        "recordedDate": "2023-03-10T00:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Condition"}
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]}],
+        "code": {
+          "coding": [
+            {"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "I10", "display": "Essential (primary) hypertension"},
+            {"system": "http://snomed.info/sct", "code": "59621000", "display": "Essential hypertension"}
+          ],
+          "text": "Essential hypertension"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "onsetDateTime": "2013-09-22T00:00:00Z",
+        "recordedDate": "2013-09-22T00:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Condition"}
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]}],
+        "code": {
+          "coding": [
+            {"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "E66.01", "display": "Morbid (severe) obesity due to excess calories"},
+            {"system": "http://snomed.info/sct", "code": "414916001", "display": "Obesity"}
+          ],
+          "text": "Obesity, BMI 30-39.9"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "onsetDateTime": "2015-01-15T00:00:00Z",
+        "recordedDate": "2015-01-15T00:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Condition"}
+    },
+    {
+      "resource": {
+        "resourceType": "Condition",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed"}]},
+        "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/condition-category", "code": "problem-list-item"}]}],
+        "code": {
+          "coding": [
+            {"system": "http://hl7.org/fhir/sid/icd-10-cm", "code": "E78.5", "display": "Hyperlipidemia, unspecified"},
+            {"system": "http://snomed.info/sct", "code": "370992007", "display": "Dyslipidemia"}
+          ],
+          "text": "Dyslipidemia"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "onsetDateTime": "2016-08-05T00:00:00Z",
+        "recordedDate": "2016-08-05T00:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Condition"}
+    },
+
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "860974", "display": "Metformin 1000 MG Oral Tablet"}],
+          "text": "Metformin 1000 mg oral tablet"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "authoredOn": "2024-08-15T10:30:00Z",
+        "dosageInstruction": [{
+          "text": "Take 1 tablet by mouth twice daily",
+          "timing": {"repeat": {"frequency": 2, "period": 1, "periodUnit": "d"}},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]}
+        }]
+      },
+      "request": {"method": "POST", "url": "MedicationRequest"}
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "314006", "display": "Glipizide 10 MG Oral Tablet"}],
+          "text": "Glipizide 10 mg oral tablet"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "authoredOn": "2024-08-15T10:30:00Z",
+        "dosageInstruction": [{
+          "text": "Take 1 tablet by mouth twice daily",
+          "timing": {"repeat": {"frequency": 2, "period": 1, "periodUnit": "d"}},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]}
+        }]
+      },
+      "request": {"method": "POST", "url": "MedicationRequest"}
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "197884", "display": "Lisinopril 20 MG Oral Tablet"}],
+          "text": "Lisinopril 20 mg oral tablet"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "authoredOn": "2024-08-15T10:30:00Z",
+        "dosageInstruction": [{
+          "text": "Take 1 tablet by mouth daily",
+          "timing": {"repeat": {"frequency": 1, "period": 1, "periodUnit": "d"}},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]}
+        }]
+      },
+      "request": {"method": "POST", "url": "MedicationRequest"}
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "310429", "display": "Furosemide 40 MG Oral Tablet"}],
+          "text": "Furosemide 40 mg oral tablet"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "authoredOn": "2024-08-15T10:30:00Z",
+        "dosageInstruction": [{
+          "text": "Take 1 tablet by mouth daily",
+          "timing": {"repeat": {"frequency": 1, "period": 1, "periodUnit": "d"}},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]}
+        }]
+      },
+      "request": {"method": "POST", "url": "MedicationRequest"}
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "313096", "display": "Spironolactone 25 MG Oral Tablet"}],
+          "text": "Spironolactone 25 mg oral tablet"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "authoredOn": "2024-08-15T10:30:00Z",
+        "dosageInstruction": [{
+          "text": "Take 1 tablet by mouth daily",
+          "timing": {"repeat": {"frequency": 1, "period": 1, "periodUnit": "d"}},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]}
+        }]
+      },
+      "request": {"method": "POST", "url": "MedicationRequest"}
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "617310", "display": "Atorvastatin 40 MG Oral Tablet"}],
+          "text": "Atorvastatin 40 mg oral tablet"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "authoredOn": "2024-08-15T10:30:00Z",
+        "dosageInstruction": [{
+          "text": "Take 1 tablet by mouth daily at bedtime",
+          "timing": {"repeat": {"frequency": 1, "period": 1, "periodUnit": "d", "when": ["HS"]}},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]}
+        }]
+      },
+      "request": {"method": "POST", "url": "MedicationRequest"}
+    },
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [{"system": "http://www.nlm.nih.gov/research/umls/rxnorm", "code": "310965", "display": "Ibuprofen 400 MG Oral Tablet"}],
+          "text": "Ibuprofen 400 mg oral tablet"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "authoredOn": "2024-08-15T10:30:00Z",
+        "dosageInstruction": [{
+          "text": "Take 1 tablet by mouth every 6 hours as needed for pain",
+          "asNeededBoolean": true,
+          "timing": {"repeat": {"frequency": 1, "period": 6, "periodUnit": "h"}},
+          "route": {"coding": [{"system": "http://snomed.info/sct", "code": "26643006", "display": "Oral route"}]}
+        }]
+      },
+      "request": {"method": "POST", "url": "MedicationRequest"}
+    },
+
+    {
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "clinicalStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical", "code": "active"}]},
+        "verificationStatus": {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification", "code": "confirmed"}]},
+        "type": "allergy",
+        "category": ["medication"],
+        "criticality": "low",
+        "code": {
+          "coding": [{"system": "http://snomed.info/sct", "code": "387406002", "display": "Sulfonamide"}],
+          "text": "Sulfonamide allergy"
+        },
+        "patient": {"reference": "Patient/maria-santos-001"},
+        "reaction": [{
+          "manifestation": [{
+            "coding": [{"system": "http://snomed.info/sct", "code": "271807003", "display": "Rash"}],
+            "text": "Rash"
+          }],
+          "severity": "mild"
+        }]
+      },
+      "request": {"method": "POST", "url": "AllergyIntolerance"}
+    },
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2160-0", "display": "Creatinine [Mass/volume] in Serum or Plasma"}], "text": "Serum Creatinine"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-02-15T08:00:00Z", "issued": "2024-02-15T08:00:00Z", "valueQuantity": {"value": 1.10, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2160-0", "display": "Creatinine [Mass/volume] in Serum or Plasma"}], "text": "Serum Creatinine"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-05-15T08:00:00Z", "issued": "2024-05-15T08:00:00Z", "valueQuantity": {"value": 1.15, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2160-0", "display": "Creatinine [Mass/volume] in Serum or Plasma"}], "text": "Serum Creatinine"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 1.18, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2160-0", "display": "Creatinine [Mass/volume] in Serum or Plasma"}], "text": "Serum Creatinine"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-11-15T08:00:00Z", "issued": "2024-11-15T08:00:00Z", "valueQuantity": {"value": 1.22, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2160-0", "display": "Creatinine [Mass/volume] in Serum or Plasma"}], "text": "Serum Creatinine"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-02-15T08:00:00Z", "issued": "2025-02-15T08:00:00Z", "valueQuantity": {"value": 1.25, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2160-0", "display": "Creatinine [Mass/volume] in Serum or Plasma"}], "text": "Serum Creatinine"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-05-15T08:00:00Z", "issued": "2025-05-15T08:00:00Z", "valueQuantity": {"value": 1.30, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2160-0", "display": "Creatinine [Mass/volume] in Serum or Plasma"}], "text": "Serum Creatinine"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T08:00:00Z", "issued": "2025-08-15T08:00:00Z", "valueQuantity": {"value": 1.32, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2160-0", "display": "Creatinine [Mass/volume] in Serum or Plasma"}], "text": "Serum Creatinine"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T08:00:00Z", "issued": "2025-11-15T08:00:00Z", "valueQuantity": {"value": 1.38, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "98979-8", "display": "Glomerular filtration rate [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI 2021)"}], "text": "eGFR"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-02-15T08:00:00Z", "issued": "2024-02-15T08:00:00Z", "valueQuantity": {"value": 62, "unit": "mL/min/{1.73_m2}", "system": "http://unitsofmeasure.org", "code": "mL/min/{1.73_m2}"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "98979-8", "display": "Glomerular filtration rate"}], "text": "eGFR"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-05-15T08:00:00Z", "issued": "2024-05-15T08:00:00Z", "valueQuantity": {"value": 59, "unit": "mL/min/{1.73_m2}", "system": "http://unitsofmeasure.org", "code": "mL/min/{1.73_m2}"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "98979-8", "display": "Glomerular filtration rate"}], "text": "eGFR"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 57, "unit": "mL/min/{1.73_m2}", "system": "http://unitsofmeasure.org", "code": "mL/min/{1.73_m2}"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "98979-8", "display": "Glomerular filtration rate"}], "text": "eGFR"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-11-15T08:00:00Z", "issued": "2024-11-15T08:00:00Z", "valueQuantity": {"value": 55, "unit": "mL/min/{1.73_m2}", "system": "http://unitsofmeasure.org", "code": "mL/min/{1.73_m2}"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "98979-8", "display": "Glomerular filtration rate"}], "text": "eGFR"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-02-15T08:00:00Z", "issued": "2025-02-15T08:00:00Z", "valueQuantity": {"value": 54, "unit": "mL/min/{1.73_m2}", "system": "http://unitsofmeasure.org", "code": "mL/min/{1.73_m2}"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "98979-8", "display": "Glomerular filtration rate"}], "text": "eGFR"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-05-15T08:00:00Z", "issued": "2025-05-15T08:00:00Z", "valueQuantity": {"value": 52, "unit": "mL/min/{1.73_m2}", "system": "http://unitsofmeasure.org", "code": "mL/min/{1.73_m2}"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "98979-8", "display": "Glomerular filtration rate"}], "text": "eGFR"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T08:00:00Z", "issued": "2025-08-15T08:00:00Z", "valueQuantity": {"value": 51, "unit": "mL/min/{1.73_m2}", "system": "http://unitsofmeasure.org", "code": "mL/min/{1.73_m2}"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "98979-8", "display": "Glomerular filtration rate"}], "text": "eGFR"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T08:00:00Z", "issued": "2025-11-15T08:00:00Z", "valueQuantity": {"value": 49, "unit": "mL/min/{1.73_m2}", "system": "http://unitsofmeasure.org", "code": "mL/min/{1.73_m2}"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "4548-4", "display": "Hemoglobin A1c/Hemoglobin.total in Blood"}], "text": "HbA1c"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-02-15T08:00:00Z", "issued": "2024-02-15T08:00:00Z", "valueQuantity": {"value": 7.2, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "4548-4", "display": "Hemoglobin A1c"}], "text": "HbA1c"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-06-15T08:00:00Z", "issued": "2024-06-15T08:00:00Z", "valueQuantity": {"value": 7.4, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "4548-4", "display": "Hemoglobin A1c"}], "text": "HbA1c"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-10-15T08:00:00Z", "issued": "2024-10-15T08:00:00Z", "valueQuantity": {"value": 7.6, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "4548-4", "display": "Hemoglobin A1c"}], "text": "HbA1c"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-02-15T08:00:00Z", "issued": "2025-02-15T08:00:00Z", "valueQuantity": {"value": 7.8, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "4548-4", "display": "Hemoglobin A1c"}], "text": "HbA1c"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-06-15T08:00:00Z", "issued": "2025-06-15T08:00:00Z", "valueQuantity": {"value": 8.0, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "4548-4", "display": "Hemoglobin A1c"}], "text": "HbA1c"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-10-15T08:00:00Z", "issued": "2025-10-15T08:00:00Z", "valueQuantity": {"value": 8.2, "unit": "%", "system": "http://unitsofmeasure.org", "code": "%"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "13457-7", "display": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation"}], "text": "LDL Cholesterol"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 135, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "13457-7", "display": "Cholesterol in LDL"}], "text": "LDL Cholesterol"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-11-15T08:00:00Z", "issued": "2024-11-15T08:00:00Z", "valueQuantity": {"value": 128, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2085-9", "display": "Cholesterol in HDL [Mass/volume] in Serum or Plasma"}], "text": "HDL Cholesterol"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 44, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2085-9", "display": "Cholesterol in HDL"}], "text": "HDL Cholesterol"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-11-15T08:00:00Z", "issued": "2024-11-15T08:00:00Z", "valueQuantity": {"value": 42, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2571-8", "display": "Triglyceride [Mass/volume] in Serum or Plasma"}], "text": "Triglycerides"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 210, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2571-8", "display": "Triglyceride"}], "text": "Triglycerides"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-11-15T08:00:00Z", "issued": "2024-11-15T08:00:00Z", "valueQuantity": {"value": 225, "unit": "mg/dL", "system": "http://unitsofmeasure.org", "code": "mg/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "1920-8", "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"}], "text": "AST"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 32, "unit": "U/L", "system": "http://unitsofmeasure.org", "code": "U/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "1920-8", "display": "Aspartate aminotransferase"}], "text": "AST"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-02-15T08:00:00Z", "issued": "2025-02-15T08:00:00Z", "valueQuantity": {"value": 35, "unit": "U/L", "system": "http://unitsofmeasure.org", "code": "U/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "1920-8", "display": "Aspartate aminotransferase"}], "text": "AST"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T08:00:00Z", "issued": "2025-08-15T08:00:00Z", "valueQuantity": {"value": 38, "unit": "U/L", "system": "http://unitsofmeasure.org", "code": "U/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "1920-8", "display": "Aspartate aminotransferase"}], "text": "AST"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T08:00:00Z", "issued": "2025-11-15T08:00:00Z", "valueQuantity": {"value": 40, "unit": "U/L", "system": "http://unitsofmeasure.org", "code": "U/L"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "1742-6", "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma"}], "text": "ALT"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-05-15T08:00:00Z", "issued": "2024-05-15T08:00:00Z", "valueQuantity": {"value": 42, "unit": "U/L", "system": "http://unitsofmeasure.org", "code": "U/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "1742-6", "display": "Alanine aminotransferase"}], "text": "ALT"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 48, "unit": "U/L", "system": "http://unitsofmeasure.org", "code": "U/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "1742-6", "display": "Alanine aminotransferase"}], "text": "ALT"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-02-15T08:00:00Z", "issued": "2025-02-15T08:00:00Z", "valueQuantity": {"value": 52, "unit": "U/L", "system": "http://unitsofmeasure.org", "code": "U/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "1742-6", "display": "Alanine aminotransferase"}], "text": "ALT"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T08:00:00Z", "issued": "2025-08-15T08:00:00Z", "valueQuantity": {"value": 45, "unit": "U/L", "system": "http://unitsofmeasure.org", "code": "U/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "1742-6", "display": "Alanine aminotransferase"}], "text": "ALT"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T08:00:00Z", "issued": "2025-11-15T08:00:00Z", "valueQuantity": {"value": 51, "unit": "U/L", "system": "http://unitsofmeasure.org", "code": "U/L"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "777-3", "display": "Platelets [#/volume] in Blood by Automated count"}], "text": "Platelet Count"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 220, "unit": "10*3/uL", "system": "http://unitsofmeasure.org", "code": "10*3/uL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "777-3", "display": "Platelets"}], "text": "Platelet Count"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-02-15T08:00:00Z", "issued": "2025-02-15T08:00:00Z", "valueQuantity": {"value": 215, "unit": "10*3/uL", "system": "http://unitsofmeasure.org", "code": "10*3/uL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "777-3", "display": "Platelets"}], "text": "Platelet Count"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T08:00:00Z", "issued": "2025-08-15T08:00:00Z", "valueQuantity": {"value": 210, "unit": "10*3/uL", "system": "http://unitsofmeasure.org", "code": "10*3/uL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "777-3", "display": "Platelets"}], "text": "Platelet Count"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T08:00:00Z", "issued": "2025-11-15T08:00:00Z", "valueQuantity": {"value": 208, "unit": "10*3/uL", "system": "http://unitsofmeasure.org", "code": "10*3/uL"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin [Mass/volume] in Blood"}], "text": "Hemoglobin"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 12.4, "unit": "g/dL", "system": "http://unitsofmeasure.org", "code": "g/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}], "text": "Hemoglobin"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-02-15T08:00:00Z", "issued": "2025-02-15T08:00:00Z", "valueQuantity": {"value": 12.2, "unit": "g/dL", "system": "http://unitsofmeasure.org", "code": "g/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}], "text": "Hemoglobin"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T08:00:00Z", "issued": "2025-08-15T08:00:00Z", "valueQuantity": {"value": 12.0, "unit": "g/dL", "system": "http://unitsofmeasure.org", "code": "g/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "718-7", "display": "Hemoglobin"}], "text": "Hemoglobin"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T08:00:00Z", "issued": "2025-11-15T08:00:00Z", "valueQuantity": {"value": 11.8, "unit": "g/dL", "system": "http://unitsofmeasure.org", "code": "g/dL"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2823-3", "display": "Potassium [Moles/volume] in Serum or Plasma"}], "text": "Potassium"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-08-15T08:00:00Z", "issued": "2024-08-15T08:00:00Z", "valueQuantity": {"value": 4.2, "unit": "mmol/L", "system": "http://unitsofmeasure.org", "code": "mmol/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2823-3", "display": "Potassium"}], "text": "Potassium"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-02-15T08:00:00Z", "issued": "2025-02-15T08:00:00Z", "valueQuantity": {"value": 4.5, "unit": "mmol/L", "system": "http://unitsofmeasure.org", "code": "mmol/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2823-3", "display": "Potassium"}], "text": "Potassium"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T08:00:00Z", "issued": "2025-08-15T08:00:00Z", "valueQuantity": {"value": 4.8, "unit": "mmol/L", "system": "http://unitsofmeasure.org", "code": "mmol/L"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "2823-3", "display": "Potassium"}], "text": "Potassium"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T08:00:00Z", "issued": "2025-11-15T08:00:00Z", "valueQuantity": {"value": 5.0, "unit": "mmol/L", "system": "http://unitsofmeasure.org", "code": "mmol/L"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "9318-7", "display": "Albumin/Creatinine [Mass Ratio] in Urine"}], "text": "Urine Albumin/Creatinine Ratio"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2024-11-15T08:00:00Z", "issued": "2024-11-15T08:00:00Z", "valueQuantity": {"value": 85, "unit": "mg/g", "system": "http://unitsofmeasure.org", "code": "mg/g"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "9318-7", "display": "UACR"}], "text": "Urine Albumin/Creatinine Ratio"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-05-15T08:00:00Z", "issued": "2025-05-15T08:00:00Z", "valueQuantity": {"value": 105, "unit": "mg/g", "system": "http://unitsofmeasure.org", "code": "mg/g"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "laboratory"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "9318-7", "display": "UACR"}], "text": "Urine Albumin/Creatinine Ratio"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T08:00:00Z", "issued": "2025-11-15T08:00:00Z", "valueQuantity": {"value": 120, "unit": "mg/g", "system": "http://unitsofmeasure.org", "code": "mg/g"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "85354-9", "display": "Blood pressure panel with all children optional"}], "text": "Blood pressure panel"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-06-15T09:00:00Z", "component": [{"code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]}, "valueQuantity": {"value": 132, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}, {"code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]}, "valueQuantity": {"value": 82, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}]}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "85354-9", "display": "Blood pressure panel"}], "text": "Blood pressure panel"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-07-15T09:00:00Z", "component": [{"code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]}, "valueQuantity": {"value": 136, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}, {"code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]}, "valueQuantity": {"value": 84, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}]}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "85354-9", "display": "Blood pressure panel"}], "text": "Blood pressure panel"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T09:00:00Z", "component": [{"code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]}, "valueQuantity": {"value": 140, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}, {"code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]}, "valueQuantity": {"value": 86, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}]}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "85354-9", "display": "Blood pressure panel"}], "text": "Blood pressure panel"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-09-15T09:00:00Z", "component": [{"code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]}, "valueQuantity": {"value": 142, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}, {"code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]}, "valueQuantity": {"value": 85, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}]}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "85354-9", "display": "Blood pressure panel"}], "text": "Blood pressure panel"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-10-15T09:00:00Z", "component": [{"code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]}, "valueQuantity": {"value": 145, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}, {"code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]}, "valueQuantity": {"value": 88, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}]}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "85354-9", "display": "Blood pressure panel"}], "text": "Blood pressure panel"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T09:00:00Z", "component": [{"code": {"coding": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}]}, "valueQuantity": {"value": 148, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}, {"code": {"coding": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}]}, "valueQuantity": {"value": 88, "unit": "mm[Hg]", "system": "http://unitsofmeasure.org", "code": "mm[Hg]"}}]}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "29463-7", "display": "Body weight"}], "text": "Body Weight"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-06-15T09:00:00Z", "valueQuantity": {"value": 88.0, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "29463-7", "display": "Body weight"}], "text": "Body Weight"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-07-15T09:00:00Z", "valueQuantity": {"value": 89.0, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "29463-7", "display": "Body weight"}], "text": "Body Weight"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T09:00:00Z", "valueQuantity": {"value": 89.5, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "29463-7", "display": "Body weight"}], "text": "Body Weight"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-09-15T09:00:00Z", "valueQuantity": {"value": 90.0, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "29463-7", "display": "Body weight"}], "text": "Body Weight"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-10-15T09:00:00Z", "valueQuantity": {"value": 90.5, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "29463-7", "display": "Body weight"}], "text": "Body Weight"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T09:00:00Z", "valueQuantity": {"value": 91.0, "unit": "kg", "system": "http://unitsofmeasure.org", "code": "kg"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "8302-2", "display": "Body height"}], "text": "Body Height"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T09:00:00Z", "valueQuantity": {"value": 163, "unit": "cm", "system": "http://unitsofmeasure.org", "code": "cm"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "39156-5", "display": "Body mass index (BMI) [Ratio]"}], "text": "BMI"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-06-15T09:00:00Z", "valueQuantity": {"value": 33.1, "unit": "kg/m2", "system": "http://unitsofmeasure.org", "code": "kg/m2"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "39156-5", "display": "BMI"}], "text": "BMI"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-07-15T09:00:00Z", "valueQuantity": {"value": 33.5, "unit": "kg/m2", "system": "http://unitsofmeasure.org", "code": "kg/m2"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "39156-5", "display": "BMI"}], "text": "BMI"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-08-15T09:00:00Z", "valueQuantity": {"value": 33.7, "unit": "kg/m2", "system": "http://unitsofmeasure.org", "code": "kg/m2"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "39156-5", "display": "BMI"}], "text": "BMI"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-09-15T09:00:00Z", "valueQuantity": {"value": 33.9, "unit": "kg/m2", "system": "http://unitsofmeasure.org", "code": "kg/m2"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "39156-5", "display": "BMI"}], "text": "BMI"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-10-15T09:00:00Z", "valueQuantity": {"value": 34.0, "unit": "kg/m2", "system": "http://unitsofmeasure.org", "code": "kg/m2"}}, "request": {"method": "POST", "url": "Observation"}},
+    {"resource": {"resourceType": "Observation", "status": "final", "category": [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/observation-category", "code": "vital-signs"}]}], "code": {"coding": [{"system": "http://loinc.org", "code": "39156-5", "display": "BMI"}], "text": "BMI"}, "subject": {"reference": "Patient/maria-santos-001"}, "effectiveDateTime": "2025-11-15T09:00:00Z", "valueQuantity": {"value": 34.2, "unit": "kg/m2", "system": "http://unitsofmeasure.org", "code": "kg/m2"}}, "request": {"method": "POST", "url": "Observation"}},
+
+    {
+      "resource": {
+        "resourceType": "Procedure",
+        "status": "completed",
+        "code": {
+          "coding": [{"system": "http://snomed.info/sct", "code": "415300000", "display": "Annual physical examination"}],
+          "text": "Annual physical examination"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "performedDateTime": "2025-08-15T10:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Procedure"}
+    },
+    {
+      "resource": {
+        "resourceType": "Procedure",
+        "status": "completed",
+        "code": {
+          "coding": [{"system": "http://snomed.info/sct", "code": "401191002", "display": "Diabetic foot examination"}],
+          "text": "Diabetic foot examination"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "performedDateTime": "2024-11-15T10:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Procedure"}
+    },
+    {
+      "resource": {
+        "resourceType": "Procedure",
+        "status": "completed",
+        "code": {
+          "coding": [{"system": "http://snomed.info/sct", "code": "40701008", "display": "Echocardiography"}],
+          "text": "Echocardiogram"
+        },
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "performedDateTime": "2024-06-10T10:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Procedure"}
+    },
+
+    {
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{"system": "http://hl7.org/fhir/sid/cvx", "code": "158", "display": "Influenza, injectable, quadrivalent"}],
+          "text": "Influenza vaccine"
+        },
+        "patient": {"reference": "Patient/maria-santos-001"},
+        "occurrenceDateTime": "2024-10-05T11:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Immunization"}
+    },
+    {
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{"system": "http://hl7.org/fhir/sid/cvx", "code": "158", "display": "Influenza, injectable, quadrivalent"}],
+          "text": "Influenza vaccine (current season)"
+        },
+        "patient": {"reference": "Patient/maria-santos-001"},
+        "occurrenceDateTime": "2025-10-12T11:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Immunization"}
+    },
+    {
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{"system": "http://hl7.org/fhir/sid/cvx", "code": "115", "display": "Tdap"}],
+          "text": "Tdap vaccine"
+        },
+        "patient": {"reference": "Patient/maria-santos-001"},
+        "occurrenceDateTime": "2022-03-20T11:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Immunization"}
+    },
+    {
+      "resource": {
+        "resourceType": "Immunization",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [{"system": "http://hl7.org/fhir/sid/cvx", "code": "152", "display": "Pneumococcal Conjugate PCV 13"}],
+          "text": "Pneumococcal vaccine (PCV13)"
+        },
+        "patient": {"reference": "Patient/maria-santos-001"},
+        "occurrenceDateTime": "2023-04-18T11:00:00Z"
+      },
+      "request": {"method": "POST", "url": "Immunization"}
+    },
+
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "finished",
+        "class": {"system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB", "display": "ambulatory"},
+        "type": [{
+          "coding": [{"system": "http://snomed.info/sct", "code": "308335008", "display": "Patient encounter procedure"}],
+          "text": "Diabetes follow-up visit"
+        }],
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "period": {"start": "2025-08-15T10:00:00Z", "end": "2025-08-15T10:30:00Z"}
+      },
+      "request": {"method": "POST", "url": "Encounter"}
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "finished",
+        "class": {"system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB", "display": "ambulatory"},
+        "type": [{
+          "coding": [{"system": "http://snomed.info/sct", "code": "270427003", "display": "Patient-initiated encounter"}],
+          "text": "Annual wellness visit"
+        }],
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "period": {"start": "2025-02-15T10:00:00Z", "end": "2025-02-15T11:00:00Z"}
+      },
+      "request": {"method": "POST", "url": "Encounter"}
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "finished",
+        "class": {"system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB", "display": "ambulatory"},
+        "type": [{
+          "coding": [{"system": "http://snomed.info/sct", "code": "308335008", "display": "Patient encounter procedure"}],
+          "text": "Hypertension follow-up visit"
+        }],
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "period": {"start": "2024-11-15T10:00:00Z", "end": "2024-11-15T10:30:00Z"}
+      },
+      "request": {"method": "POST", "url": "Encounter"}
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "status": "finished",
+        "class": {"system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB", "display": "ambulatory"},
+        "type": [{
+          "coding": [{"system": "http://snomed.info/sct", "code": "308335008", "display": "Patient encounter procedure"}],
+          "text": "New patient establishment visit"
+        }],
+        "subject": {"reference": "Patient/maria-santos-001"},
+        "period": {"start": "2024-05-15T10:00:00Z", "end": "2024-05-15T11:00:00Z"}
+      },
+      "request": {"method": "POST", "url": "Encounter"}
+    }
+  ]
+}
