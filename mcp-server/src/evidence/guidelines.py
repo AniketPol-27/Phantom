@@ -622,6 +622,359 @@ CARE_GAP_RULES: list[dict] = [
         "priority": "moderate",
         "citation": "KDIGO 2024 / ACC/AHA",
     },
+
+    # -----------------------------------------------------------------------
+    # USPSTF Cancer Screening (added in Task 5C)
+    # -----------------------------------------------------------------------
+
+    {
+        "id": "cervical_cancer_screening",
+        "guideline": "USPSTF 2018",
+        "category": "cancer_screening",
+        "description": (
+            "Cervical cancer screening recommended for women age 21-65"
+        ),
+        "criteria": {
+            "sex": "female",
+            "age_min": 21,
+            "age_max": 65,
+        },
+        "recommendation": (
+            "Pap smear every 3 years (age 21-29) or Pap + HPV co-testing "
+            "every 5 years (age 30-65). Recommendation grade A."
+        ),
+        "evidence_grade": "A",
+        "priority": "moderate",
+        "citation": "USPSTF Cervical Cancer Screening 2018",
+    },
+
+    {
+        "id": "aaa_screening_men",
+        "guideline": "USPSTF 2019",
+        "category": "cancer_screening",
+        "description": (
+            "One-time AAA screening with abdominal ultrasound for men "
+            "age 65-75 who have ever smoked"
+        ),
+        "criteria": {
+            "sex": "male",
+            "age_min": 65,
+            "age_max": 75,
+            "smoking_history_present": True,
+        },
+        "recommendation": (
+            "Order one-time abdominal ultrasound to screen for abdominal "
+            "aortic aneurysm. Recommendation grade B."
+        ),
+        "evidence_grade": "B",
+        "priority": "moderate",
+        "citation": "USPSTF AAA Screening 2019",
+    },
+
+    {
+        "id": "osteoporosis_screening_postmenopausal",
+        "guideline": "USPSTF 2018",
+        "category": "bone_health",
+        "description": (
+            "Osteoporosis screening recommended for women age 65+ and "
+            "men age 70+"
+        ),
+        "criteria": {
+            "any_age_sex_combo": [
+                {"sex": "female", "age_min": 65},
+                {"sex": "male", "age_min": 70},
+            ],
+        },
+        "recommendation": (
+            "Order DEXA scan to assess bone mineral density. Repeat "
+            "every 2 years if T-score is between -1.0 and -2.5."
+        ),
+        "evidence_grade": "B",
+        "priority": "moderate",
+        "citation": "USPSTF Osteoporosis Screening 2018",
+    },
+
+    {
+        "id": "hepatitis_c_screening_universal",
+        "guideline": "USPSTF 2020",
+        "category": "infectious_disease_screening",
+        "description": (
+            "One-time hepatitis C screening recommended for all adults "
+            "age 18-79"
+        ),
+        "criteria": {
+            "age_min": 18,
+            "age_max": 79,
+        },
+        "recommendation": (
+            "Order anti-HCV antibody test. If positive, confirm with "
+            "HCV RNA. Refer for treatment if positive."
+        ),
+        "evidence_grade": "B",
+        "priority": "moderate",
+        "citation": "USPSTF Hepatitis C Screening 2020",
+    },
+
+    {
+        "id": "hepatitis_b_screening_high_risk",
+        "guideline": "USPSTF 2020",
+        "category": "infectious_disease_screening",
+        "description": (
+            "Hepatitis B screening recommended for high-risk adults "
+            "(birth in endemic country, IV drug use, sexual exposure)"
+        ),
+        "criteria": {
+            "any_condition_present": [
+                "iv_drug_use_history",
+                "born_in_hbv_endemic_country",
+                "hiv_positive",
+                "men_who_have_sex_with_men",
+            ],
+        },
+        "recommendation": (
+            "Order HBsAg, anti-HBs, and anti-HBc. Vaccinate if "
+            "non-immune; refer if positive."
+        ),
+        "evidence_grade": "B",
+        "priority": "moderate",
+        "citation": "USPSTF Hepatitis B Screening 2020",
+    },
+
+    {
+        "id": "hiv_screening_universal",
+        "guideline": "USPSTF 2019",
+        "category": "infectious_disease_screening",
+        "description": (
+            "HIV screening recommended for all adolescents and adults "
+            "age 15-65"
+        ),
+        "criteria": {
+            "age_min": 15,
+            "age_max": 65,
+        },
+        "recommendation": (
+            "Order 4th-generation HIV antigen/antibody combination "
+            "assay. Repeat at clinician discretion based on risk."
+        ),
+        "evidence_grade": "A",
+        "priority": "moderate",
+        "citation": "USPSTF HIV Screening 2019",
+    },
+
+    {
+        "id": "lung_cancer_screening_high_risk",
+        "guideline": "USPSTF 2021",
+        "category": "cancer_screening",
+        "description": (
+            "Annual low-dose CT for lung cancer screening in adults "
+            "age 50-80 with 20+ pack-years who currently smoke or quit "
+            "within 15 years"
+        ),
+        "criteria": {
+            "age_min": 50,
+            "age_max": 80,
+            "smoking_pack_years_min": 20,
+            "smoking_status_any": ["current", "former_quit_within_15_years"],
+        },
+        "recommendation": (
+            "Order annual low-dose chest CT. Counsel on smoking "
+            "cessation if current smoker."
+        ),
+        "evidence_grade": "B",
+        "priority": "high",
+        "citation": "USPSTF Lung Cancer Screening 2021",
+    },
+
+    # -----------------------------------------------------------------------
+    # Primary Prevention (Statin / Aspirin)
+    # -----------------------------------------------------------------------
+
+    {
+        "id": "statin_primary_prevention_high_ascvd",
+        "guideline": "ACC/AHA 2018 + USPSTF 2022",
+        "category": "lipid_management",
+        "description": (
+            "Statin recommended for primary prevention if 10-year ASCVD "
+            "risk >=10%"
+        ),
+        "criteria": {
+            "age_min": 40,
+            "age_max": 75,
+            "ascvd_10yr_risk_min": 10,
+            "medication_class_absent": ["statin"],
+            "conditions_absent": ["pregnancy"],
+        },
+        "recommendation": (
+            "Initiate moderate- or high-intensity statin therapy "
+            "(atorvastatin 20-40 mg or rosuvastatin 10-20 mg)."
+        ),
+        "evidence_grade": "A",
+        "priority": "high",
+        "citation": "ACC/AHA 2018 Cholesterol Guidelines, USPSTF 2022",
+    },
+
+    {
+        "id": "aspirin_primary_prevention_nuanced",
+        "guideline": "USPSTF 2022",
+        "category": "antiplatelet_therapy",
+        "description": (
+            "Low-dose aspirin for primary CV prevention has narrow benefit "
+            "window; consider only if age 40-59 with 10-yr ASCVD >=10%"
+        ),
+        "criteria": {
+            "age_min": 40,
+            "age_max": 59,
+            "ascvd_10yr_risk_min": 10,
+            "medication_class_absent": ["antiplatelet"],
+            "bleeding_risk_low": True,
+            "conditions_absent": ["active_bleeding", "peptic_ulcer_disease"],
+        },
+        "recommendation": (
+            "Discuss aspirin 81 mg daily with patient. Net benefit "
+            "depends on patient bleeding risk and preferences."
+        ),
+        "evidence_grade": "C",
+        "priority": "low",
+        "citation": "USPSTF Aspirin for Primary CV Prevention 2022",
+    },
+
+    # -----------------------------------------------------------------------
+    # Diabetes Screening (USPSTF + ADA)
+    # -----------------------------------------------------------------------
+
+    {
+        "id": "prediabetes_diabetes_screening_uspstf",
+        "guideline": "USPSTF 2021 + ADA 2024",
+        "category": "diabetes_screening",
+        "description": (
+            "Screen for prediabetes and type 2 diabetes in adults age "
+            "35-70 who are overweight or obese"
+        ),
+        "criteria": {
+            "age_min": 35,
+            "age_max": 70,
+            "bmi_min": 25,
+            "conditions_absent": ["type_2_diabetes", "type_1_diabetes"],
+        },
+        "recommendation": (
+            "Order HbA1c or fasting plasma glucose. Repeat every 3 years "
+            "if normal, or annually if prediabetes."
+        ),
+        "evidence_grade": "B",
+        "priority": "moderate",
+        "citation": "USPSTF Diabetes Screening 2021, ADA Standards 2024",
+    },
+
+    # -----------------------------------------------------------------------
+    # USPSTF Behavioral Counseling (added in Task 5C)
+    # -----------------------------------------------------------------------
+
+    {
+        "id": "depression_screening_adults",
+        "guideline": "USPSTF 2023",
+        "category": "mental_health",
+        "description": (
+            "Depression screening recommended for all adults including "
+            "older adults"
+        ),
+        "criteria": {
+            "age_min": 18,
+        },
+        "recommendation": (
+            "Administer PHQ-2 or PHQ-9. If positive, full evaluation and "
+            "treatment per stepped care model."
+        ),
+        "evidence_grade": "B",
+        "priority": "moderate",
+        "citation": "USPSTF Depression Screening 2023",
+    },
+
+    {
+        "id": "falls_prevention_older_adults",
+        "guideline": "USPSTF 2018",
+        "category": "geriatrics",
+        "description": (
+            "Exercise interventions and multifactorial assessment to "
+            "prevent falls in community-dwelling adults 65+"
+        ),
+        "criteria": {
+            "age_min": 65,
+        },
+        "recommendation": (
+            "Assess gait, balance, vision, medication review (Beers "
+            "criteria). Refer to PT for exercise program if at risk."
+        ),
+        "evidence_grade": "B",
+        "priority": "moderate",
+        "citation": "USPSTF Falls Prevention 2018",
+    },
+
+    {
+        "id": "tobacco_cessation_counseling",
+        "guideline": "USPSTF 2021",
+        "category": "preventive_care",
+        "description": (
+            "Behavioral counseling and pharmacotherapy for all adults "
+            "who use tobacco"
+        ),
+        "criteria": {
+            "age_min": 18,
+            "smoking_status_any": ["current"],
+        },
+        "recommendation": (
+            "Brief counseling at every visit (5 A's: Ask, Advise, Assess, "
+            "Assist, Arrange). Offer nicotine replacement, varenicline, "
+            "or bupropion."
+        ),
+        "evidence_grade": "A",
+        "priority": "high",
+        "citation": "USPSTF Tobacco Cessation 2021",
+    },
+
+    {
+        "id": "alcohol_use_screening",
+        "guideline": "USPSTF 2018",
+        "category": "preventive_care",
+        "description": (
+            "Screening and brief behavioral counseling for unhealthy "
+            "alcohol use in primary care adults"
+        ),
+        "criteria": {
+            "age_min": 18,
+        },
+        "recommendation": (
+            "Use AUDIT-C or single-question screen. Provide brief "
+            "intervention if positive; refer if alcohol use disorder."
+        ),
+        "evidence_grade": "B",
+        "priority": "moderate",
+        "citation": "USPSTF Unhealthy Alcohol Use 2018",
+    },
+
+    {
+        "id": "physical_activity_counseling_cv_risk",
+        "guideline": "USPSTF 2020",
+        "category": "preventive_care",
+        "description": (
+            "Behavioral counseling on healthy diet and physical activity "
+            "for CV risk reduction in adults with CVD risk factors"
+        ),
+        "criteria": {
+            "age_min": 35,
+            "any_condition_present": [
+                "hypertension", "dyslipidemia", "type_2_diabetes",
+                "obesity", "metabolic_syndrome",
+            ],
+        },
+        "recommendation": (
+            "Refer to or provide intensive behavioral counseling on "
+            "healthy diet and physical activity (>=150 min/week "
+            "moderate-intensity). Recommendation grade B."
+        ),
+        "evidence_grade": "B",
+        "priority": "moderate",
+        "citation": "USPSTF Healthy Diet and Physical Activity 2020",
+    },
 ]
 
 
