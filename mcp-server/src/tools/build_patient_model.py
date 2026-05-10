@@ -35,6 +35,7 @@ from src.fhir import (
     vital_observations_query,
 )
 from src.sharp import SharpContextError, extract_sharp_context
+from src.model_builder.builder import assemble_patient_model
 
 logger = structlog.get_logger(__name__)
 
@@ -140,7 +141,39 @@ async def build_patient_model(
         }
 
     patient = parse_patient(patient_resource)
+    parsed_conditions = parse_section(
+    "conditions",
+    parse_condition,
+    "Condition",
+)
 
+    parsed_medications = parse_section(
+        "medication_requests",
+        parse_medication_request,
+        "MedicationRequest",
+)
+
+    parsed_labs = parse_section(
+    "lab_observations",
+    parse_observation,
+    "Observation",
+)
+
+    parsed_vitals = parse_section(
+    "vital_observations",
+    parse_observation,
+    "Observation",
+)
+
+    active_conditions = [
+    c for c in parsed_conditions["items"]
+    if c.get("is_active")
+]
+
+    active_medications = [
+    m for m in parsed_medications["items"]
+    if m.get("is_active")
+]
     model = {
         "_round": "3.2",
         "_message": (
