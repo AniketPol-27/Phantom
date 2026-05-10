@@ -1338,6 +1338,498 @@ _TRIALS: dict[str, dict] = {
 
         "conditions": ["hypertension", "cardiovascular", "ckd"],
     },
+
+    # -----------------------------------------------------------------------
+    # ELIXA: Lixisenatide CV outcomes in post-ACS patients with T2DM
+    # -----------------------------------------------------------------------
+
+    "ELIXA": {
+        "trial_name": "ELIXA",
+        "full_name": (
+            "Evaluation of Lixisenatide in Acute Coronary Syndrome"
+        ),
+        "drug_studied": "lixisenatide",
+        "drug_class": "GLP-1 receptor agonist",
+        "drug_dose": "20 mcg subcutaneous once daily",
+        "comparator": "placebo",
+        "year_published": 2015,
+        "journal": "NEJM",
+        "pmid": "26630143",
+        "doi": "10.1056/NEJMoa1509225",
+
+        "population": {
+            "description": (
+                "Adults with type 2 diabetes who had a recent acute "
+                "coronary syndrome event within the previous 180 days"
+            ),
+            "n_enrolled": 6068,
+            "mean_age": 60.3,
+            "percent_female": 30.7,
+            "percent_diabetes": 100.0,
+            "mean_hba1c": 7.7,
+            "mean_egfr": 76.0,
+            "key_inclusion": [
+                "type 2 diabetes",
+                "ACS event within 180 days (MI or unstable angina)",
+                "HbA1c 5.5-11.0%",
+            ],
+            "key_exclusion": [
+                "type_1_diabetes",
+                "history of pancreatitis",
+                "severe gastroparesis",
+                "egfr_below_30",
+            ],
+        },
+
+        "primary_outcome": {
+            "definition": (
+                "Composite of CV death, non-fatal MI, non-fatal stroke, "
+                "or hospitalization for unstable angina (4-point MACE)"
+            ),
+            "drug_group_rate_percent": 13.4,
+            "placebo_group_rate_percent": 13.2,
+            "hazard_ratio": 1.02,
+            "ci_95": [0.89, 1.17],
+            "p_value": "<0.001 for non-inferiority",
+            "median_followup_years": 2.1,
+        },
+
+        "secondary_outcomes": [
+            {
+                "definition": "All-cause mortality",
+                "hazard_ratio": 0.94,
+                "ci_95": [0.78, 1.13],
+                "p_value": "0.50",
+            },
+            {
+                "definition": "Hospitalization for heart failure",
+                "hazard_ratio": 0.96,
+                "ci_95": [0.75, 1.23],
+                "p_value": "0.75",
+            },
+            {
+                "definition": "HbA1c reduction at 3 months",
+                "drug_change": -0.27,
+                "placebo_change": 0.0,
+                "p_value": "<0.001",
+            },
+        ],
+
+        "safety": {
+            "serious_adverse_events_drug_percent": 20.6,
+            "serious_adverse_events_placebo_percent": 22.1,
+            "pancreatitis_drug_percent": 0.2,
+            "pancreatitis_placebo_percent": 0.3,
+            "discontinuation_drug_percent": 11.4,
+            "discontinuation_placebo_percent": 7.2,
+            "nausea_drug_percent": 26.0,
+            "nausea_placebo_percent": 7.0,
+        },
+
+        "subgroups": [
+            {
+                "subgroup": "egfr_below_60",
+                "hazard_ratio": 1.04,
+                "ci_95": [0.79, 1.37],
+                "interaction_p": 0.81,
+            },
+            {
+                "subgroup": "egfr_above_60",
+                "hazard_ratio": 1.01,
+                "ci_95": [0.86, 1.18],
+                "interaction_p": 0.81,
+            },
+        ],
+
+        "conditions_studied": ["type_2_diabetes", "post_acs", "cardiovascular_disease"],
+
+        "interpretation": (
+            "Lixisenatide demonstrated cardiovascular safety (non-inferiority) "
+            "but no superiority over placebo in post-ACS T2DM patients. "
+            "Established the CV-neutral profile of GLP-1 RAs in this setting."
+        ),
+    },
+
+    # -----------------------------------------------------------------------
+    # TECOS: Sitagliptin CV outcomes in T2DM patients with established CVD
+    # -----------------------------------------------------------------------
+
+    "TECOS": {
+        "trial_name": "TECOS",
+        "full_name": (
+            "Trial Evaluating Cardiovascular Outcomes with Sitagliptin"
+        ),
+        "drug_studied": "sitagliptin",
+        "drug_class": "DPP-4 inhibitor",
+        "drug_dose": "100 mg once daily (50 mg if eGFR 30-50)",
+        "comparator": "placebo",
+        "year_published": 2015,
+        "journal": "NEJM",
+        "pmid": "26052984",
+        "doi": "10.1056/NEJMoa1501352",
+
+        "population": {
+            "description": (
+                "Adults aged 50+ with type 2 diabetes and established "
+                "cardiovascular disease, on stable mono- or dual-therapy "
+                "for glucose control"
+            ),
+            "n_enrolled": 14671,
+            "mean_age": 65.4,
+            "percent_female": 29.3,
+            "percent_diabetes": 100.0,
+            "mean_hba1c": 7.2,
+            "mean_egfr": 75.0,
+            "percent_prior_mi": 42.7,
+            "percent_prior_stroke": 24.0,
+            "key_inclusion": [
+                "type 2 diabetes",
+                "age >=50",
+                "established CVD (CAD, ischemic stroke, or PAD)",
+                "HbA1c 6.5-8.0%",
+            ],
+            "key_exclusion": [
+                "type_1_diabetes",
+                "egfr_below_30",
+                "history of pancreatitis",
+                "two or more episodes of severe hypoglycemia in prior year",
+            ],
+        },
+
+        "primary_outcome": {
+            "definition": (
+                "Composite of CV death, non-fatal MI, non-fatal stroke, "
+                "or hospitalization for unstable angina (4-point MACE)"
+            ),
+            "drug_group_rate_percent": 11.4,
+            "placebo_group_rate_percent": 11.6,
+            "hazard_ratio": 0.98,
+            "ci_95": [0.88, 1.09],
+            "p_value": "<0.001 for non-inferiority; 0.65 for superiority",
+            "median_followup_years": 3.0,
+        },
+
+        "secondary_outcomes": [
+            {
+                "definition": "All-cause mortality",
+                "hazard_ratio": 1.01,
+                "ci_95": [0.90, 1.14],
+                "p_value": "0.88",
+            },
+            {
+                "definition": "Hospitalization for heart failure",
+                "hazard_ratio": 1.00,
+                "ci_95": [0.83, 1.20],
+                "p_value": "0.98",
+            },
+            {
+                "definition": "HbA1c difference at study end",
+                "difference": -0.29,
+                "p_value": "<0.001",
+            },
+        ],
+
+        "safety": {
+            "serious_adverse_events_drug_percent": 41.5,
+            "serious_adverse_events_placebo_percent": 41.8,
+            "pancreatitis_drug_percent": 0.3,
+            "pancreatitis_placebo_percent": 0.2,
+            "discontinuation_drug_percent": 16.4,
+            "discontinuation_placebo_percent": 16.7,
+            "severe_hypoglycemia_drug_percent": 2.2,
+            "severe_hypoglycemia_placebo_percent": 1.9,
+        },
+
+        "subgroups": [
+            {
+                "subgroup": "egfr_below_60",
+                "hazard_ratio": 0.96,
+                "ci_95": [0.81, 1.13],
+                "interaction_p": 0.84,
+            },
+            {
+                "subgroup": "with_prior_hf",
+                "hazard_ratio": 0.99,
+                "ci_95": [0.86, 1.13],
+                "interaction_p": 0.95,
+            },
+        ],
+
+        "conditions_studied": ["type_2_diabetes", "cardiovascular_disease"],
+
+        "interpretation": (
+            "Sitagliptin demonstrated cardiovascular safety (non-inferior) "
+            "with no increase in HF hospitalization, distinguishing it from "
+            "saxagliptin (SAVOR-TIMI 53). Established the CV-neutral profile "
+            "of DPP-4 inhibitors."
+        ),
+    },
+
+    # -----------------------------------------------------------------------
+    # CANVAS: Canagliflozin CV outcomes in T2DM with high CV risk
+    # -----------------------------------------------------------------------
+
+    "CANVAS": {
+        "trial_name": "CANVAS",
+        "full_name": (
+            "Canagliflozin Cardiovascular Assessment Study (combined CANVAS "
+            "and CANVAS-R Program)"
+        ),
+        "drug_studied": "canagliflozin",
+        "drug_class": "SGLT2 inhibitor",
+        "drug_dose": "100 mg or 300 mg once daily",
+        "comparator": "placebo",
+        "year_published": 2017,
+        "journal": "NEJM",
+        "pmid": "28605608",
+        "doi": "10.1056/NEJMoa1611925",
+
+        "population": {
+            "description": (
+                "Adults with type 2 diabetes and either established CVD "
+                "(secondary prevention) or age 50+ with two or more CV "
+                "risk factors (primary prevention)"
+            ),
+            "n_enrolled": 10142,
+            "mean_age": 63.3,
+            "percent_female": 35.8,
+            "percent_diabetes": 100.0,
+            "mean_hba1c": 8.2,
+            "mean_egfr": 76.5,
+            "percent_secondary_prevention": 65.6,
+            "key_inclusion": [
+                "type 2 diabetes",
+                "HbA1c 7.0-10.5%",
+                "established CVD OR age >=50 with >=2 CV risk factors",
+                "egfr_above_30",
+            ],
+            "key_exclusion": [
+                "type_1_diabetes",
+                "egfr_below_30",
+                "history of dka",
+            ],
+        },
+
+        "primary_outcome": {
+            "definition": (
+                "Composite of CV death, non-fatal MI, or non-fatal stroke "
+                "(3-point MACE)"
+            ),
+            "drug_group_rate_per_1000py": 26.9,
+            "placebo_group_rate_per_1000py": 31.5,
+            "hazard_ratio": 0.86,
+            "ci_95": [0.75, 0.97],
+            "p_value": "0.02 for superiority",
+            "median_followup_years": 3.6,
+        },
+
+        "secondary_outcomes": [
+            {
+                "definition": "Hospitalization for heart failure",
+                "hazard_ratio": 0.67,
+                "ci_95": [0.52, 0.87],
+                "p_value": "<0.01",
+            },
+            {
+                "definition": "Renal composite (40% eGFR decline, ESKD, renal death)",
+                "hazard_ratio": 0.60,
+                "ci_95": [0.47, 0.77],
+                "p_value": "<0.001",
+            },
+            {
+                "definition": "Albuminuria progression",
+                "hazard_ratio": 0.73,
+                "ci_95": [0.67, 0.79],
+                "p_value": "<0.001",
+            },
+        ],
+
+        "egfr_slope_data": {
+            "drug_slope_ml_per_min_per_year": -1.20,
+            "placebo_slope_ml_per_min_per_year": -1.85,
+            "difference": 0.65,
+            "interpretation": (
+                "Slower eGFR decline with canagliflozin vs placebo, similar "
+                "magnitude to other SGLT2 inhibitor CVOTs"
+            ),
+        },
+
+        "safety": {
+            "serious_adverse_events_drug_percent": 35.3,
+            "serious_adverse_events_placebo_percent": 36.8,
+            "amputation_drug_per_1000py": 6.3,
+            "amputation_placebo_per_1000py": 3.4,
+            "amputation_hr": 1.97,
+            "amputation_ci_95": [1.41, 2.75],
+            "fracture_drug_per_1000py": 15.4,
+            "fracture_placebo_per_1000py": 11.9,
+            "fracture_hr": 1.26,
+            "dka_drug_per_1000py": 0.6,
+            "dka_placebo_per_1000py": 0.3,
+            "genital_infection_drug_percent": 9.0,
+            "genital_infection_placebo_percent": 1.8,
+        },
+
+        "subgroups": [
+            {
+                "subgroup": "primary_prevention",
+                "hazard_ratio": 0.98,
+                "ci_95": [0.74, 1.30],
+                "interaction_p": 0.18,
+            },
+            {
+                "subgroup": "secondary_prevention",
+                "hazard_ratio": 0.82,
+                "ci_95": [0.72, 0.95],
+                "interaction_p": 0.18,
+            },
+            {
+                "subgroup": "egfr_below_60",
+                "hazard_ratio": 0.70,
+                "ci_95": [0.55, 0.90],
+                "interaction_p": 0.08,
+            },
+        ],
+
+        "conditions_studied": ["type_2_diabetes", "cardiovascular_disease", "ckd"],
+
+        "interpretation": (
+            "Canagliflozin reduced 3-point MACE and HF hospitalization in "
+            "T2DM patients with high CV risk. First SGLT2 inhibitor trial "
+            "to flag amputation risk (later not replicated in CREDENCE or "
+            "EMPA-REG), prompting FDA boxed warning that was subsequently "
+            "removed in 2020."
+        ),
+    },
+
+    # -----------------------------------------------------------------------
+    # ACCORD: Intensive vs standard glycemic control in high-risk T2DM
+    # -----------------------------------------------------------------------
+
+    "ACCORD": {
+        "trial_name": "ACCORD",
+        "full_name": (
+            "Action to Control Cardiovascular Risk in Diabetes"
+        ),
+        "drug_studied": "intensive glycemic control (multiple agents)",
+        "drug_class": "glycemic control strategy",
+        "drug_dose": "intensive arm targeted HbA1c <6.0%",
+        "comparator": "standard glycemic control (HbA1c 7.0-7.9%)",
+        "year_published": 2008,
+        "journal": "NEJM",
+        "pmid": "18539917",
+        "doi": "10.1056/NEJMoa0802743",
+
+        "population": {
+            "description": (
+                "Adults with type 2 diabetes, HbA1c >=7.5%, and either "
+                "established CVD (age 40-79) or two or more CV risk factors "
+                "(age 55-79)"
+            ),
+            "n_enrolled": 10251,
+            "mean_age": 62.2,
+            "percent_female": 38.5,
+            "percent_diabetes": 100.0,
+            "mean_hba1c_baseline": 8.1,
+            "mean_diabetes_duration_years": 10.0,
+            "key_inclusion": [
+                "type 2 diabetes",
+                "HbA1c >=7.5%",
+                "established CVD or >=2 CV risk factors",
+                "age 40-79 with CVD or 55-79 with risk factors",
+            ],
+            "key_exclusion": [
+                "frequent severe hypoglycemia",
+                "BMI >45",
+                "serum creatinine >1.5 mg/dL",
+                "advanced CKD",
+            ],
+        },
+
+        "primary_outcome": {
+            "definition": (
+                "Composite of non-fatal MI, non-fatal stroke, or CV death"
+            ),
+            "intensive_rate_percent": 6.9,
+            "standard_rate_percent": 7.2,
+            "hazard_ratio": 0.90,
+            "ci_95": [0.78, 1.04],
+            "p_value": "0.16",
+            "median_followup_years": 3.5,
+        },
+
+        "secondary_outcomes": [
+            {
+                "definition": "All-cause mortality",
+                "hazard_ratio": 1.22,
+                "ci_95": [1.01, 1.46],
+                "p_value": "0.04",
+                "interpretation": (
+                    "Excess mortality in intensive arm; trial stopped early "
+                    "after 3.5 years for safety"
+                ),
+            },
+            {
+                "definition": "CV mortality",
+                "hazard_ratio": 1.35,
+                "ci_95": [1.04, 1.76],
+                "p_value": "0.02",
+            },
+            {
+                "definition": "Non-fatal MI",
+                "hazard_ratio": 0.76,
+                "ci_95": [0.62, 0.92],
+                "p_value": "0.004",
+            },
+            {
+                "definition": "HbA1c achieved",
+                "intensive_arm": 6.4,
+                "standard_arm": 7.5,
+                "p_value": "<0.001",
+            },
+        ],
+
+        "safety": {
+            "severe_hypoglycemia_intensive_percent": 16.2,
+            "severe_hypoglycemia_standard_percent": 5.1,
+            "weight_gain_intensive_kg": 3.5,
+            "weight_gain_standard_kg": 0.4,
+            "fluid_retention_intensive_percent": 27.0,
+            "fluid_retention_standard_percent": 22.0,
+        },
+
+        "subgroups": [
+            {
+                "subgroup": "no_prior_cv_event",
+                "hazard_ratio": 0.78,
+                "ci_95": [0.62, 0.98],
+                "interaction_p": 0.04,
+            },
+            {
+                "subgroup": "with_prior_cv_event",
+                "hazard_ratio": 1.04,
+                "ci_95": [0.86, 1.26],
+                "interaction_p": 0.04,
+            },
+            {
+                "subgroup": "baseline_hba1c_above_8.5",
+                "hazard_ratio": 1.16,
+                "ci_95": [0.92, 1.46],
+                "interaction_p": 0.04,
+            },
+        ],
+
+        "conditions_studied": ["type_2_diabetes", "cardiovascular_disease"],
+
+        "interpretation": (
+            "Landmark trial demonstrating that aggressive glycemic targets "
+            "(HbA1c <6.0%) increase mortality in older T2DM patients with "
+            "long disease duration and established CVD. Foundational for "
+            "current guideline emphasis on individualized glycemic targets "
+            "(typically HbA1c 7-8% in such patients) rather than universal "
+            "tight control."
+        ),
+    },
 }
 
 
