@@ -913,11 +913,12 @@ class TestDataIntegrity:
             f"{[n for n in all_names if all_names.count(n) > 1]}"
         )
 
-    def test_21_drugs_in_knowledge_base(self):
+    def test_drug_count_at_least_35(self):
         """
-        The drug knowledge base should contain exactly 21 drugs as built.
+        The drug knowledge base should contain at least 35 drugs.
+        Initial set was 21, expanded to 35 in Task 5A.
         """
         all_names = get_all_drug_names()
-        assert len(all_names) == 21, (
-            f"Expected 21 drugs, found {len(all_names)}: {all_names}"
+        assert len(all_names) >= 35, (
+            f"Expected at least 35 drugs, found {len(all_names)}: {all_names}"
         )

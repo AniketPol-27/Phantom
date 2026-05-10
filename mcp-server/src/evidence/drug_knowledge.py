@@ -2447,6 +2447,1508 @@ _DRUGS: dict[str, dict] = {
             "food_requirements": "none",
         },
     },
+
+
+    "sitagliptin": {
+        "name": "sitagliptin",
+        "brand_names": ["Januvia"],
+        "rxcui": "593411",
+        "drug_class": "DPP-4 inhibitor",
+        "atc_code": "A10BH01",
+        "mechanism": (
+            "Inhibits dipeptidyl peptidase-4 (DPP-4), prolonging the action "
+            "of incretin hormones (GLP-1 and GIP) which increase glucose-"
+            "dependent insulin release and reduce glucagon."
+        ),
+        "indications": ["type_2_diabetes"],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": -0.7,
+                "hba1c_range": [-0.5, -0.9],
+                "weight_change_kg": 0.0,
+                "weight_range_kg": [-0.5, 0.5],
+                "hypoglycemia_risk": "low",
+                "mechanism_of_glycemic_effect": "incretin enhancement, glucose-dependent",
+                "evidence": "TECOS trial (NEJM 2015)",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "albuminuria_reduction_percent": 0,
+                "renoprotective": False,
+            },
+            "cardiovascular": {
+                "mace_relative_risk": 0.98,
+                "mace_evidence": "TECOS (PMID 26052984) - cardiovascular neutral",
+                "hf_hospitalization_rr": 1.0,
+                "bp_systolic_change_mmhg": 0,
+            },
+            "hepatic": {
+                "alt_effect": "neutral",
+                "hepatotoxicity_risk": "very_rare",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+                "mechanism": "weight-neutral incretin enhancement",
+            },
+        },
+
+        "contraindications": [
+            {"condition": "type_1_diabetes", "severity": "absolute"},
+            {"condition": "dka_history", "severity": "absolute"},
+            {"condition": "pancreatitis_history", "severity": "relative"},
+        ],
+
+        "side_effects": [
+            {"effect": "nasopharyngitis", "frequency": "common", "percent": 6.0},
+            {"effect": "headache", "frequency": "common", "percent": 5.0},
+            {"effect": "acute_pancreatitis", "frequency": "rare", "percent": 0.1},
+            {"effect": "arthralgia", "frequency": "uncommon", "percent": 1.0},
+            {"effect": "hypersensitivity_reaction", "frequency": "rare", "percent": 0.1},
+        ],
+
+        "monitoring": [
+            {"test": "renal_function", "timing": "before_initiation_and_periodically"},
+            {"test": "amylase_lipase", "timing": "if_pancreatitis_symptoms"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "sulfonylurea",
+                "severity": "moderate",
+                "effect": "Increased hypoglycemia risk",
+                "recommendation": "Consider reducing sulfonylurea dose",
+            },
+            {
+                "interacting_drug_class": "insulin",
+                "severity": "moderate",
+                "effect": "Increased hypoglycemia risk",
+                "recommendation": "Consider reducing insulin dose",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "100 mg once daily",
+            "max_dose": "100 mg once daily",
+            "renal_adjustment": "50 mg daily if eGFR 30-45; 25 mg daily if eGFR <30",
+            "hepatic_adjustment": "No adjustment for mild-moderate impairment",
+        },
+
+        "cost_tier": "$$$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "low",
+            "injection": False,
+            "titration_required": False,
+            "food_requirements": "none",
+        },
+    },
+
+    "linagliptin": {
+        "name": "linagliptin",
+        "brand_names": ["Tradjenta"],
+        "rxcui": "1043563",
+        "drug_class": "DPP-4 inhibitor",
+        "atc_code": "A10BH05",
+        "mechanism": (
+            "Inhibits DPP-4, prolonging incretin hormone action. "
+            "Unique among DPP-4 inhibitors in being eliminated primarily "
+            "via the bile, requiring no renal dose adjustment."
+        ),
+        "indications": ["type_2_diabetes"],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": -0.6,
+                "hba1c_range": [-0.4, -0.8],
+                "weight_change_kg": 0.0,
+                "weight_range_kg": [-0.5, 0.5],
+                "hypoglycemia_risk": "low",
+                "mechanism_of_glycemic_effect": "incretin enhancement, glucose-dependent",
+                "evidence": "CARMELINA trial (PMID 30193283)",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "albuminuria_reduction_percent": -6,
+                "renoprotective": False,
+                "renal_safety_note": "No dose adjustment required at any eGFR",
+            },
+            "cardiovascular": {
+                "mace_relative_risk": 1.02,
+                "mace_evidence": "CARMELINA - cardiovascular neutral",
+                "hf_hospitalization_rr": 0.90,
+                "bp_systolic_change_mmhg": 0,
+            },
+            "hepatic": {
+                "alt_effect": "neutral",
+                "hepatotoxicity_risk": "very_rare",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+                "mechanism": "weight-neutral incretin enhancement",
+            },
+        },
+
+        "contraindications": [
+            {"condition": "type_1_diabetes", "severity": "absolute"},
+            {"condition": "dka_history", "severity": "absolute"},
+            {"condition": "pancreatitis_history", "severity": "relative"},
+        ],
+
+        "side_effects": [
+            {"effect": "nasopharyngitis", "frequency": "common", "percent": 5.7},
+            {"effect": "cough", "frequency": "uncommon", "percent": 1.7},
+            {"effect": "acute_pancreatitis", "frequency": "rare", "percent": 0.1},
+            {"effect": "hypersensitivity_reaction", "frequency": "rare", "percent": 0.1},
+        ],
+
+        "monitoring": [
+            {"test": "amylase_lipase", "timing": "if_pancreatitis_symptoms"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "sulfonylurea",
+                "severity": "moderate",
+                "effect": "Increased hypoglycemia risk",
+                "recommendation": "Consider reducing sulfonylurea dose",
+            },
+            {
+                "interacting_drug_class": "rifampin",
+                "severity": "moderate",
+                "effect": "Strong CYP3A4/P-gp inducer reduces linagliptin exposure",
+                "recommendation": "Consider alternative DPP-4 inhibitor",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "5 mg once daily",
+            "max_dose": "5 mg once daily",
+            "renal_adjustment": "No adjustment required at any eGFR (including dialysis)",
+            "hepatic_adjustment": "No adjustment needed",
+        },
+
+        "cost_tier": "$$$$",
+        "generic_available": False,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "low",
+            "injection": False,
+            "titration_required": False,
+            "food_requirements": "none",
+        },
+    },
+
+    "amlodipine": {
+        "name": "amlodipine",
+        "brand_names": ["Norvasc"],
+        "rxcui": "197361",
+        "drug_class": "calcium channel blocker",
+        "atc_code": "C08CA01",
+        "mechanism": (
+            "Dihydropyridine calcium channel blocker. Inhibits L-type "
+            "calcium channels in vascular smooth muscle, producing "
+            "peripheral arterial vasodilation and reduced systemic "
+            "vascular resistance."
+        ),
+        "indications": ["hypertension", "stable_angina", "vasospastic_angina"],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+                "evidence": "ALLHAT (PMID 12479763) - metabolic neutral",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "albuminuria_reduction_percent": -10,
+                "renoprotective": False,
+                "renal_safety_note": "May reduce proteinuria modestly",
+            },
+            "cardiovascular": {
+                "mace_relative_risk": 0.97,
+                "mace_evidence": "ALLHAT - similar to other antihypertensives",
+                "bp_systolic_change_mmhg": -12,
+                "bp_diastolic_change_mmhg": -7,
+                "stroke_risk_reduction": "yes - in hypertensive patients",
+            },
+            "hepatic": {
+                "alt_effect": "neutral",
+                "hepatotoxicity_risk": "rare",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "severe_aortic_stenosis", "severity": "absolute"},
+            {"condition": "cardiogenic_shock", "severity": "absolute"},
+            {"condition": "severe_hypotension", "severity": "relative"},
+        ],
+
+        "side_effects": [
+            {"effect": "peripheral_edema", "frequency": "common", "percent": 10.8},
+            {"effect": "headache", "frequency": "common", "percent": 7.3},
+            {"effect": "flushing", "frequency": "common", "percent": 4.5},
+            {"effect": "fatigue", "frequency": "uncommon", "percent": 4.5},
+            {"effect": "gingival_hyperplasia", "frequency": "rare", "percent": 0.3},
+        ],
+
+        "monitoring": [
+            {"test": "blood_pressure", "timing": "at_each_visit"},
+            {"test": "peripheral_edema", "timing": "at_each_visit"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "simvastatin",
+                "severity": "moderate",
+                "effect": "Increased simvastatin exposure, myopathy risk",
+                "recommendation": "Limit simvastatin to 20 mg daily with amlodipine",
+            },
+            {
+                "interacting_drug_class": "cyclosporine",
+                "severity": "moderate",
+                "effect": "Increased amlodipine exposure",
+                "recommendation": "Monitor for hypotension and edema",
+            },
+            {
+                "interacting_drug_class": "cyp3a4_inhibitors",
+                "severity": "moderate",
+                "effect": "Increased amlodipine plasma levels",
+                "recommendation": "Monitor BP closely, consider dose reduction",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "2.5-5 mg once daily",
+            "max_dose": "10 mg once daily",
+            "renal_adjustment": "No adjustment needed",
+            "hepatic_adjustment": "Start with 2.5 mg daily in hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "low",
+            "injection": False,
+            "titration_required": True,
+            "food_requirements": "none",
+        },
+    },
+
+    "diltiazem": {
+        "name": "diltiazem",
+        "brand_names": ["Cardizem", "Tiazac"],
+        "rxcui": "197468",
+        "drug_class": "calcium channel blocker",
+        "atc_code": "C08DB01",
+        "mechanism": (
+            "Non-dihydropyridine calcium channel blocker. Inhibits L-type "
+            "calcium channels in vascular smooth muscle and cardiac tissue, "
+            "producing vasodilation, negative chronotropy, and slowed AV "
+            "nodal conduction."
+        ),
+        "indications": ["hypertension", "stable_angina", "atrial_fibrillation_rate_control"],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "albuminuria_reduction_percent": -15,
+                "renoprotective": False,
+            },
+            "cardiovascular": {
+                "mace_relative_risk": 1.0,
+                "bp_systolic_change_mmhg": -10,
+                "bp_diastolic_change_mmhg": -7,
+                "heart_rate_change_bpm": -8,
+                "av_node_effect": "slowed_conduction",
+            },
+            "hepatic": {
+                "alt_effect": "neutral",
+                "hepatotoxicity_risk": "uncommon",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "severe_left_ventricular_dysfunction", "severity": "absolute"},
+            {"condition": "second_or_third_degree_heart_block", "severity": "absolute"},
+            {"condition": "sick_sinus_syndrome", "severity": "absolute"},
+            {"condition": "severe_hypotension", "severity": "absolute"},
+            {"condition": "wpw_with_atrial_fibrillation", "severity": "absolute"},
+        ],
+
+        "side_effects": [
+            {"effect": "peripheral_edema", "frequency": "common", "percent": 6.0},
+            {"effect": "headache", "frequency": "common", "percent": 5.0},
+            {"effect": "bradycardia", "frequency": "uncommon", "percent": 2.0},
+            {"effect": "constipation", "frequency": "common", "percent": 4.0},
+            {"effect": "av_block", "frequency": "rare", "percent": 0.6},
+        ],
+
+        "monitoring": [
+            {"test": "blood_pressure", "timing": "at_each_visit"},
+            {"test": "heart_rate", "timing": "at_each_visit"},
+            {"test": "ecg", "timing": "if_av_block_suspected"},
+            {"test": "lft", "timing": "periodically"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "beta_blocker",
+                "severity": "major",
+                "effect": "Additive bradycardia and AV block; risk of severe bradycardia",
+                "recommendation": "Avoid combination if possible; monitor closely if necessary",
+            },
+            {
+                "interacting_drug_class": "statin",
+                "severity": "moderate",
+                "effect": "Increased statin exposure (CYP3A4 inhibition)",
+                "recommendation": "Limit simvastatin to 10 mg, lovastatin to 20 mg",
+            },
+            {
+                "interacting_drug_class": "digoxin",
+                "severity": "moderate",
+                "effect": "Increased digoxin levels",
+                "recommendation": "Monitor digoxin level",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "120-180 mg once daily (extended-release)",
+            "max_dose": "480 mg once daily",
+            "renal_adjustment": "Use cautiously in severe renal impairment",
+            "hepatic_adjustment": "Reduce dose by 50% in hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "once_or_twice_daily",
+
+        "adherence_factors": {
+            "pill_burden": "low",
+            "injection": False,
+            "titration_required": True,
+            "food_requirements": "none",
+        },
+    },
+
+    "carvedilol": {
+        "name": "carvedilol",
+        "brand_names": ["Coreg"],
+        "rxcui": "200031",
+        "drug_class": "non-selective beta blocker with alpha-1 blockade",
+        "atc_code": "C07AG02",
+        "mechanism": (
+            "Non-selective beta-1 and beta-2 receptor blocker with additional "
+            "alpha-1 receptor blockade. Reduces heart rate, contractility, "
+            "and systemic vascular resistance. Antioxidant properties."
+        ),
+        "indications": ["heart_failure_reduced_ef", "hypertension", "post_mi"],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "low",
+                "metabolic_note": "More glucose-neutral than other non-selective beta blockers",
+                "evidence": "GEMINI trial",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "renoprotective": False,
+            },
+            "cardiovascular": {
+                "mace_relative_risk": 0.65,
+                "mace_evidence": "COPERNICUS, US Carvedilol HF trials",
+                "hf_mortality_rr": 0.65,
+                "bp_systolic_change_mmhg": -8,
+                "heart_rate_change_bpm": -8,
+                "lvef_improvement": "yes",
+            },
+            "hepatic": {
+                "alt_effect": "neutral",
+                "hepatotoxicity_risk": "rare",
+            },
+            "weight": {
+                "direction": "slight_gain",
+                "expected_kg": 0.5,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "decompensated_heart_failure", "severity": "absolute"},
+            {"condition": "severe_bradycardia", "severity": "absolute"},
+            {"condition": "second_or_third_degree_heart_block", "severity": "absolute"},
+            {"condition": "severe_hepatic_impairment", "severity": "absolute"},
+            {"condition": "severe_asthma", "severity": "absolute"},
+            {"condition": "cardiogenic_shock", "severity": "absolute"},
+        ],
+
+        "side_effects": [
+            {"effect": "dizziness", "frequency": "common", "percent": 24.0},
+            {"effect": "fatigue", "frequency": "common", "percent": 24.0},
+            {"effect": "hypotension", "frequency": "common", "percent": 14.0},
+            {"effect": "bradycardia", "frequency": "common", "percent": 10.0},
+            {"effect": "weight_gain", "frequency": "uncommon", "percent": 5.0},
+            {"effect": "bronchospasm", "frequency": "rare", "percent": 0.2},
+        ],
+
+        "monitoring": [
+            {"test": "blood_pressure", "timing": "at_each_visit"},
+            {"test": "heart_rate", "timing": "at_each_visit"},
+            {"test": "weight", "timing": "weekly_during_titration"},
+            {"test": "renal_function", "timing": "before_initiation"},
+            {"test": "lft", "timing": "periodically"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "calcium_channel_blocker_non_dhp",
+                "severity": "major",
+                "effect": "Additive bradycardia and AV block",
+                "recommendation": "Avoid combination if possible",
+            },
+            {
+                "interacting_drug_class": "insulin",
+                "severity": "moderate",
+                "effect": "Masks hypoglycemia symptoms",
+                "recommendation": "Counsel patient on alternative hypoglycemia recognition",
+            },
+            {
+                "interacting_drug_class": "amiodarone",
+                "severity": "moderate",
+                "effect": "Increased carvedilol exposure",
+                "recommendation": "Monitor for bradycardia",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "3.125 mg twice daily (HF), titrate every 2 weeks",
+            "max_dose": "25 mg twice daily (50 mg twice daily if >85 kg)",
+            "renal_adjustment": "No adjustment needed",
+            "hepatic_adjustment": "Contraindicated in severe hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "twice_daily",
+
+        "adherence_factors": {
+            "pill_burden": "moderate",
+            "injection": False,
+            "titration_required": True,
+            "food_requirements": "take_with_food_to_slow_absorption",
+        },
+    },
+
+    "bisoprolol": {
+        "name": "bisoprolol",
+        "brand_names": ["Zebeta"],
+        "rxcui": "200030",
+        "drug_class": "beta-1 selective blocker",
+        "atc_code": "C07AB07",
+        "mechanism": (
+            "Highly selective beta-1 adrenergic receptor blocker. Reduces "
+            "heart rate, contractility, and renin release with minimal "
+            "beta-2 activity at therapeutic doses."
+        ),
+        "indications": ["heart_failure_reduced_ef", "hypertension", "post_mi"],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "low",
+                "metabolic_note": "Beta-1 selectivity preserves glucose homeostasis",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "renoprotective": False,
+            },
+            "cardiovascular": {
+                "mace_relative_risk": 0.66,
+                "mace_evidence": "CIBIS-II trial (PMID 9988708)",
+                "hf_mortality_rr": 0.66,
+                "bp_systolic_change_mmhg": -8,
+                "heart_rate_change_bpm": -10,
+            },
+            "hepatic": {
+                "alt_effect": "neutral",
+                "hepatotoxicity_risk": "rare",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "decompensated_heart_failure", "severity": "absolute"},
+            {"condition": "severe_bradycardia", "severity": "absolute"},
+            {"condition": "second_or_third_degree_heart_block", "severity": "absolute"},
+            {"condition": "cardiogenic_shock", "severity": "absolute"},
+            {"condition": "severe_asthma", "severity": "relative"},
+        ],
+
+        "side_effects": [
+            {"effect": "fatigue", "frequency": "common", "percent": 8.0},
+            {"effect": "bradycardia", "frequency": "common", "percent": 8.0},
+            {"effect": "dizziness", "frequency": "common", "percent": 7.0},
+            {"effect": "hypotension", "frequency": "uncommon", "percent": 3.0},
+            {"effect": "cold_extremities", "frequency": "uncommon", "percent": 2.0},
+        ],
+
+        "monitoring": [
+            {"test": "blood_pressure", "timing": "at_each_visit"},
+            {"test": "heart_rate", "timing": "at_each_visit"},
+            {"test": "weight", "timing": "weekly_during_titration_for_HF"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "calcium_channel_blocker_non_dhp",
+                "severity": "major",
+                "effect": "Additive bradycardia and AV block",
+                "recommendation": "Avoid combination if possible",
+            },
+            {
+                "interacting_drug_class": "insulin",
+                "severity": "moderate",
+                "effect": "Masks hypoglycemia symptoms (less than non-selective)",
+                "recommendation": "Counsel patient",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "1.25 mg once daily (HF), titrate every 2 weeks",
+            "max_dose": "10 mg once daily",
+            "renal_adjustment": "Reduce dose if eGFR <40",
+            "hepatic_adjustment": "Reduce dose in severe hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "low",
+            "injection": False,
+            "titration_required": True,
+            "food_requirements": "none",
+        },
+    },
+
+    "apixaban": {
+        "name": "apixaban",
+        "brand_names": ["Eliquis"],
+        "rxcui": "1364430",
+        "drug_class": "direct oral anticoagulant",
+        "atc_code": "B01AF02",
+        "mechanism": (
+            "Direct, reversible inhibitor of activated factor X (Xa). "
+            "Inhibits both free and prothrombinase-bound factor Xa, "
+            "preventing thrombin generation and clot formation."
+        ),
+        "indications": [
+            "atrial_fibrillation",
+            "venous_thromboembolism_treatment",
+            "venous_thromboembolism_prophylaxis",
+        ],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "renal_safety_note": "Preferred DOAC in moderate CKD; usable down to eGFR 15",
+            },
+            "cardiovascular": {
+                "stroke_risk_reduction_in_afib": "yes",
+                "stroke_rr_vs_warfarin": 0.79,
+                "major_bleeding_rr_vs_warfarin": 0.69,
+                "evidence": "ARISTOTLE (NEJM 2011, PMID 21870978)",
+            },
+            "hepatic": {
+                "alt_effect": "neutral",
+                "hepatotoxicity_risk": "rare",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "active_pathological_bleeding", "severity": "absolute"},
+            {"condition": "severe_hepatic_impairment", "severity": "absolute"},
+            {"condition": "mechanical_heart_valve", "severity": "absolute"},
+            {"condition": "antiphospholipid_syndrome_triple_positive", "severity": "absolute"},
+            {"condition": "egfr_below_15", "severity": "relative"},
+            {"condition": "pregnancy", "severity": "absolute"},
+        ],
+
+        "side_effects": [
+            {"effect": "major_bleeding", "frequency": "uncommon", "percent": 2.1},
+            {"effect": "minor_bleeding", "frequency": "common", "percent": 12.0},
+            {"effect": "epistaxis", "frequency": "common", "percent": 4.0},
+            {"effect": "hematuria", "frequency": "uncommon", "percent": 2.0},
+            {"effect": "intracranial_hemorrhage", "frequency": "rare", "percent": 0.3},
+        ],
+
+        "monitoring": [
+            {"test": "renal_function", "timing": "at_least_annually"},
+            {"test": "hemoglobin", "timing": "annually_or_if_bleeding"},
+            {"test": "lft", "timing": "if_baseline_abnormal"},
+            {"test": "bleeding_assessment", "timing": "at_each_visit"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "antiplatelet",
+                "severity": "major",
+                "effect": "Markedly increased bleeding risk",
+                "recommendation": "Avoid combination unless clear indication; minimize duration",
+            },
+            {
+                "interacting_drug_class": "nsaid",
+                "severity": "major",
+                "effect": "Increased bleeding risk and renal injury",
+                "recommendation": "Avoid; use acetaminophen instead",
+            },
+            {
+                "interacting_drug_class": "ssri",
+                "severity": "moderate",
+                "effect": "Increased bleeding risk",
+                "recommendation": "Use with caution; counsel on bleeding signs",
+            },
+            {
+                "interacting_drug_class": "strong_cyp3a4_inducers",
+                "severity": "major",
+                "effect": "Reduced apixaban exposure (rifampin, phenytoin, carbamazepine)",
+                "recommendation": "Avoid combination",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "5 mg twice daily (afib); 10 mg BID x7d then 5 mg BID (VTE)",
+            "max_dose": "10 mg twice daily (acute VTE)",
+            "renal_adjustment": "2.5 mg BID if 2 of: age >=80, weight <=60kg, Cr >=1.5",
+            "hepatic_adjustment": "Avoid in severe hepatic impairment",
+        },
+
+        "cost_tier": "$$$$",
+        "generic_available": False,
+        "route": "oral",
+        "frequency": "twice_daily",
+
+        "adherence_factors": {
+            "pill_burden": "moderate",
+            "injection": False,
+            "titration_required": False,
+            "food_requirements": "none",
+        },
+    },
+
+    "warfarin": {
+        "name": "warfarin",
+        "brand_names": ["Coumadin", "Jantoven"],
+        "rxcui": "855332",
+        "drug_class": "vitamin K antagonist",
+        "atc_code": "B01AA03",
+        "mechanism": (
+            "Inhibits vitamin K epoxide reductase (VKORC1), preventing "
+            "regeneration of reduced vitamin K. Reduces synthesis of "
+            "vitamin K-dependent clotting factors II, VII, IX, X, and "
+            "proteins C and S."
+        ),
+        "indications": [
+            "atrial_fibrillation",
+            "venous_thromboembolism",
+            "mechanical_heart_valve",
+            "antiphospholipid_syndrome",
+        ],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "renal_safety_note": "Acceptable at any eGFR; preferred over DOACs at eGFR <15",
+            },
+            "cardiovascular": {
+                "stroke_risk_reduction_in_afib": "yes",
+                "evidence": "Reference standard for anticoagulation",
+            },
+            "hepatic": {
+                "alt_effect": "neutral",
+                "hepatotoxicity_risk": "rare",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "active_pathological_bleeding", "severity": "absolute"},
+            {"condition": "pregnancy", "severity": "absolute"},
+            {"condition": "severe_thrombocytopenia", "severity": "absolute"},
+            {"condition": "recent_surgery_high_bleeding_risk", "severity": "relative"},
+            {"condition": "uncontrolled_hypertension", "severity": "relative"},
+            {"condition": "alcoholism", "severity": "relative"},
+        ],
+
+        "side_effects": [
+            {"effect": "major_bleeding", "frequency": "common", "percent": 3.5},
+            {"effect": "minor_bleeding", "frequency": "common", "percent": 15.0},
+            {"effect": "intracranial_hemorrhage", "frequency": "rare", "percent": 0.8},
+            {"effect": "skin_necrosis", "frequency": "very_rare", "percent": 0.01},
+            {"effect": "purple_toe_syndrome", "frequency": "very_rare", "percent": 0.01},
+        ],
+
+        "monitoring": [
+            {"test": "inr", "timing": "weekly_initially_then_monthly_when_stable"},
+            {"test": "cbc", "timing": "periodically"},
+            {"test": "bleeding_assessment", "timing": "at_each_visit"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "antibiotics",
+                "severity": "major",
+                "effect": "Increased INR via gut flora disruption or CYP inhibition",
+                "recommendation": "Check INR within 3-5 days of starting any antibiotic",
+            },
+            {
+                "interacting_drug_class": "amiodarone",
+                "severity": "major",
+                "effect": "Markedly increased INR",
+                "recommendation": "Reduce warfarin dose by 30-50%, monitor INR closely",
+            },
+            {
+                "interacting_drug_class": "nsaid",
+                "severity": "major",
+                "effect": "Increased bleeding risk (no INR change)",
+                "recommendation": "Avoid; use acetaminophen instead",
+            },
+            {
+                "interacting_drug_class": "antiplatelet",
+                "severity": "major",
+                "effect": "Markedly increased bleeding risk",
+                "recommendation": "Avoid combination unless clear indication",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "5 mg daily (or 2.5 mg if elderly/frail)",
+            "max_dose": "Titrated to INR 2-3 (or 2.5-3.5 for mechanical valves)",
+            "renal_adjustment": "No adjustment by eGFR; titrate to INR",
+            "hepatic_adjustment": "Reduce dose in hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "low",
+            "injection": False,
+            "titration_required": True,
+            "food_requirements": "consistent_vitamin_k_intake",
+            "monitoring_burden": "high - frequent INR checks",
+        },
+    },
+
+    "rivaroxaban": {
+        "name": "rivaroxaban",
+        "brand_names": ["Xarelto"],
+        "rxcui": "1114195",
+        "drug_class": "direct oral anticoagulant",
+        "atc_code": "B01AF01",
+        "mechanism": (
+            "Direct, selective inhibitor of activated factor X (Xa). "
+            "Once-daily dosing for most indications."
+        ),
+        "indications": [
+            "atrial_fibrillation",
+            "venous_thromboembolism",
+            "stable_cad_pad_secondary_prevention",
+        ],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "renal_safety_note": "Avoid if eGFR <15; reduce dose if eGFR 15-50",
+            },
+            "cardiovascular": {
+                "stroke_risk_reduction_in_afib": "yes",
+                "stroke_rr_vs_warfarin": 0.88,
+                "major_bleeding_rr_vs_warfarin": 1.04,
+                "evidence": "ROCKET-AF (NEJM 2011, PMID 21830957)",
+            },
+            "hepatic": {
+                "alt_effect": "neutral",
+                "hepatotoxicity_risk": "uncommon",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "active_pathological_bleeding", "severity": "absolute"},
+            {"condition": "severe_hepatic_impairment", "severity": "absolute"},
+            {"condition": "mechanical_heart_valve", "severity": "absolute"},
+            {"condition": "antiphospholipid_syndrome_triple_positive", "severity": "absolute"},
+            {"condition": "egfr_below_15", "severity": "absolute"},
+            {"condition": "pregnancy", "severity": "absolute"},
+        ],
+
+        "side_effects": [
+            {"effect": "major_bleeding", "frequency": "uncommon", "percent": 3.6},
+            {"effect": "minor_bleeding", "frequency": "common", "percent": 14.0},
+            {"effect": "gi_bleeding", "frequency": "uncommon", "percent": 3.2},
+            {"effect": "intracranial_hemorrhage", "frequency": "rare", "percent": 0.5},
+        ],
+
+        "monitoring": [
+            {"test": "renal_function", "timing": "at_least_annually"},
+            {"test": "hemoglobin", "timing": "annually_or_if_bleeding"},
+            {"test": "lft", "timing": "if_baseline_abnormal"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "antiplatelet",
+                "severity": "major",
+                "effect": "Markedly increased bleeding risk",
+                "recommendation": "Avoid combination unless clear indication",
+            },
+            {
+                "interacting_drug_class": "nsaid",
+                "severity": "major",
+                "effect": "Increased bleeding risk",
+                "recommendation": "Avoid; use acetaminophen",
+            },
+            {
+                "interacting_drug_class": "strong_cyp3a4_inhibitors",
+                "severity": "major",
+                "effect": "Increased rivaroxaban exposure (ketoconazole, ritonavir)",
+                "recommendation": "Avoid combination",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "20 mg once daily with food (afib); 15 mg BID x21d then 20 mg daily (VTE)",
+            "max_dose": "20 mg once daily (most indications)",
+            "renal_adjustment": "15 mg daily if eGFR 15-50 (afib); avoid if eGFR <15",
+            "hepatic_adjustment": "Avoid in moderate-severe hepatic impairment",
+        },
+
+        "cost_tier": "$$$$",
+        "generic_available": False,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "low",
+            "injection": False,
+            "titration_required": False,
+            "food_requirements": "take_with_evening_meal",
+        },
+    },
+
+    "aspirin_low_dose": {
+        "name": "aspirin_low_dose",
+        "brand_names": ["Bayer Aspirin", "Ecotrin"],
+        "rxcui": "1191",
+        "drug_class": "antiplatelet",
+        "atc_code": "B01AC06",
+        "mechanism": (
+            "Irreversibly inhibits cyclooxygenase-1 (COX-1) in platelets, "
+            "preventing thromboxane A2 synthesis and reducing platelet "
+            "aggregation. Effect persists for the platelet lifespan (7-10 days)."
+        ),
+        "indications": [
+            "secondary_cv_prevention",
+            "post_mi",
+            "post_stroke_ischemic",
+            "post_pci",
+        ],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "renal_safety_note": "Avoid in late-stage CKD due to bleeding risk",
+            },
+            "cardiovascular": {
+                "mace_relative_risk_secondary_prevention": 0.78,
+                "stroke_risk_reduction_secondary": 0.78,
+                "primary_prevention_benefit": "marginal_or_negative",
+                "evidence": "Antithrombotic Trialists Collaboration (BMJ 2002)",
+            },
+            "hepatic": {
+                "alt_effect": "rare_elevation",
+                "hepatotoxicity_risk": "rare",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "active_gi_bleeding", "severity": "absolute"},
+            {"condition": "aspirin_allergy", "severity": "absolute"},
+            {"condition": "hemophilia", "severity": "absolute"},
+            {"condition": "children_with_viral_illness", "severity": "absolute"},
+            {"condition": "severe_thrombocytopenia", "severity": "absolute"},
+            {"condition": "recent_intracranial_hemorrhage", "severity": "absolute"},
+        ],
+
+        "side_effects": [
+            {"effect": "gi_bleeding", "frequency": "uncommon", "percent": 1.5},
+            {"effect": "dyspepsia", "frequency": "common", "percent": 5.0},
+            {"effect": "intracranial_hemorrhage", "frequency": "rare", "percent": 0.2},
+            {"effect": "tinnitus", "frequency": "rare", "percent": 0.1},
+            {"effect": "asthma_exacerbation", "frequency": "rare", "percent": 0.5},
+        ],
+
+        "monitoring": [
+            {"test": "bleeding_assessment", "timing": "at_each_visit"},
+            {"test": "hemoglobin", "timing": "if_bleeding_signs"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "anticoagulant",
+                "severity": "major",
+                "effect": "Markedly increased bleeding risk",
+                "recommendation": "Avoid combination unless clear indication; minimize duration",
+            },
+            {
+                "interacting_drug_class": "nsaid",
+                "severity": "moderate",
+                "effect": "Reduced cardioprotective effect of aspirin; increased GI bleeding",
+                "recommendation": "Take aspirin 2 hours before NSAID; avoid chronic NSAIDs",
+            },
+            {
+                "interacting_drug_class": "p2y12_inhibitor",
+                "severity": "moderate",
+                "effect": "Additive antiplatelet effect (intentional in DAPT)",
+                "recommendation": "Use as DAPT only with clear indication and time-limited",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "81 mg once daily",
+            "max_dose": "81 mg once daily (cardioprotection)",
+            "renal_adjustment": "Avoid in late CKD",
+            "hepatic_adjustment": "Avoid in severe hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "very_low",
+            "injection": False,
+            "titration_required": False,
+            "food_requirements": "take_with_food_to_reduce_gi_irritation",
+        },
+    },
+
+    "clopidogrel": {
+        "name": "clopidogrel",
+        "brand_names": ["Plavix"],
+        "rxcui": "309362",
+        "drug_class": "P2Y12 inhibitor",
+        "atc_code": "B01AC04",
+        "mechanism": (
+            "Prodrug requiring CYP2C19 activation. Active metabolite "
+            "irreversibly blocks the P2Y12 ADP receptor on platelets, "
+            "preventing platelet aggregation."
+        ),
+        "indications": [
+            "post_pci_dapt",
+            "post_acs",
+            "post_stroke_ischemic",
+            "pad_symptomatic",
+        ],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+            },
+            "cardiovascular": {
+                "mace_relative_risk_post_acs": 0.80,
+                "evidence": "CURE, CAPRIE trials",
+                "dapt_benefit": "yes - reduced stent thrombosis",
+            },
+            "hepatic": {
+                "alt_effect": "rare_elevation",
+                "hepatotoxicity_risk": "rare",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "active_pathological_bleeding", "severity": "absolute"},
+            {"condition": "severe_hepatic_impairment", "severity": "absolute"},
+            {"condition": "recent_intracranial_hemorrhage", "severity": "absolute"},
+        ],
+
+        "side_effects": [
+            {"effect": "major_bleeding", "frequency": "uncommon", "percent": 3.7},
+            {"effect": "minor_bleeding", "frequency": "common", "percent": 9.3},
+            {"effect": "bruising", "frequency": "common", "percent": 5.0},
+            {"effect": "ttp", "frequency": "very_rare", "percent": 0.0001},
+            {"effect": "rash", "frequency": "uncommon", "percent": 4.0},
+        ],
+
+        "monitoring": [
+            {"test": "bleeding_assessment", "timing": "at_each_visit"},
+            {"test": "cbc", "timing": "if_bleeding_or_bruising"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "ppi",
+                "severity": "moderate",
+                "effect": "Omeprazole and esomeprazole reduce clopidogrel activation (CYP2C19)",
+                "recommendation": "Use pantoprazole or H2 blocker if PPI needed",
+            },
+            {
+                "interacting_drug_class": "anticoagulant",
+                "severity": "major",
+                "effect": "Markedly increased bleeding risk",
+                "recommendation": "Avoid unless triple therapy clearly indicated",
+            },
+            {
+                "interacting_drug_class": "nsaid",
+                "severity": "major",
+                "effect": "Increased GI bleeding risk",
+                "recommendation": "Avoid; use acetaminophen",
+            },
+            {
+                "interacting_drug_class": "ssri",
+                "severity": "moderate",
+                "effect": "Increased bleeding risk",
+                "recommendation": "Use with caution; counsel on bleeding",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "75 mg once daily (or 300-600 mg loading dose for ACS/PCI)",
+            "max_dose": "75 mg once daily (maintenance)",
+            "renal_adjustment": "No adjustment needed",
+            "hepatic_adjustment": "Avoid in severe hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "low",
+            "injection": False,
+            "titration_required": False,
+            "food_requirements": "none",
+        },
+    },
+
+    "ezetimibe": {
+        "name": "ezetimibe",
+        "brand_names": ["Zetia"],
+        "rxcui": "341248",
+        "drug_class": "cholesterol absorption inhibitor",
+        "atc_code": "C10AX09",
+        "mechanism": (
+            "Inhibits the Niemann-Pick C1-Like 1 (NPC1L1) transporter at "
+            "the brush border of the small intestine, reducing absorption "
+            "of dietary and biliary cholesterol."
+        ),
+        "indications": [
+            "primary_hypercholesterolemia",
+            "ascvd_secondary_prevention_add_on",
+            "statin_intolerance",
+            "homozygous_familial_hypercholesterolemia",
+        ],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "renoprotective": False,
+            },
+            "cardiovascular": {
+                "ldl_reduction_percent": -20,
+                "ldl_reduction_with_statin_percent": -25,
+                "mace_relative_risk": 0.94,
+                "mace_evidence": "IMPROVE-IT (NEJM 2015, PMID 26039521)",
+                "bp_systolic_change_mmhg": 0,
+            },
+            "hepatic": {
+                "alt_effect": "minor_elevation",
+                "hepatotoxicity_risk": "rare",
+                "lft_monitoring_with_statin": "yes",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "active_liver_disease", "severity": "absolute"},
+            {"condition": "unexplained_persistent_elevations_of_alt", "severity": "absolute"},
+            {"condition": "pregnancy_with_statin", "severity": "absolute"},
+        ],
+
+        "side_effects": [
+            {"effect": "myalgia", "frequency": "uncommon", "percent": 4.0},
+            {"effect": "diarrhea", "frequency": "uncommon", "percent": 4.0},
+            {"effect": "fatigue", "frequency": "uncommon", "percent": 2.0},
+            {"effect": "elevated_lft", "frequency": "uncommon", "percent": 1.7},
+            {"effect": "rhabdomyolysis", "frequency": "very_rare", "percent": 0.01},
+        ],
+
+        "monitoring": [
+            {"test": "lipid_panel", "timing": "4_to_12_weeks_after_initiation"},
+            {"test": "lft", "timing": "before_initiation_and_if_symptoms"},
+            {"test": "ck", "timing": "if_muscle_symptoms"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "statin",
+                "severity": "minor",
+                "effect": "Additive LDL lowering (intentional combination)",
+                "recommendation": "Effective combination; monitor LFT and muscle symptoms",
+            },
+            {
+                "interacting_drug_class": "fibrate",
+                "severity": "moderate",
+                "effect": "Increased risk of cholelithiasis",
+                "recommendation": "Avoid combination if possible",
+            },
+            {
+                "interacting_drug_class": "cyclosporine",
+                "severity": "moderate",
+                "effect": "Increased ezetimibe and cyclosporine exposure",
+                "recommendation": "Monitor cyclosporine levels",
+            },
+            {
+                "interacting_drug_class": "bile_acid_sequestrant",
+                "severity": "moderate",
+                "effect": "Reduced ezetimibe absorption",
+                "recommendation": "Take ezetimibe 2 hours before or 4 hours after",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "10 mg once daily",
+            "max_dose": "10 mg once daily",
+            "renal_adjustment": "No adjustment needed",
+            "hepatic_adjustment": "Avoid in moderate-severe hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "very_low",
+            "injection": False,
+            "titration_required": False,
+            "food_requirements": "none",
+        },
+    },
+
+    "omeprazole": {
+        "name": "omeprazole",
+        "brand_names": ["Prilosec", "Losec"],
+        "rxcui": "7646",
+        "drug_class": "proton pump inhibitor",
+        "atc_code": "A02BC01",
+        "mechanism": (
+            "Irreversibly inhibits the H+/K+ ATPase (proton pump) on "
+            "gastric parietal cells, reducing gastric acid secretion. "
+            "Activated in the acidic environment of parietal cell canaliculi."
+        ),
+        "indications": [
+            "gerd",
+            "peptic_ulcer_disease",
+            "h_pylori_eradication_combination",
+            "stress_ulcer_prophylaxis",
+            "zollinger_ellison_syndrome",
+        ],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "renal_safety_note": "Long-term use associated with acute interstitial nephritis and possible CKD progression",
+            },
+            "cardiovascular": {
+                "mace_relative_risk": 1.0,
+                "bp_systolic_change_mmhg": 0,
+            },
+            "hepatic": {
+                "alt_effect": "rare_elevation",
+                "hepatotoxicity_risk": "very_rare",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "hypersensitivity_to_ppi", "severity": "absolute"},
+            {"condition": "concurrent_rilpivirine", "severity": "absolute"},
+        ],
+
+        "side_effects": [
+            {"effect": "headache", "frequency": "common", "percent": 7.0},
+            {"effect": "diarrhea", "frequency": "common", "percent": 4.0},
+            {"effect": "abdominal_pain", "frequency": "common", "percent": 5.0},
+            {"effect": "vitamin_b12_deficiency", "frequency": "uncommon_long_term", "percent": 3.0},
+            {"effect": "magnesium_deficiency", "frequency": "uncommon_long_term", "percent": 2.0},
+            {"effect": "c_difficile_infection", "frequency": "uncommon", "percent": 1.5},
+            {"effect": "fracture_risk_long_term", "frequency": "uncommon", "percent": 2.0},
+            {"effect": "acute_interstitial_nephritis", "frequency": "rare", "percent": 0.1},
+        ],
+
+        "monitoring": [
+            {"test": "magnesium", "timing": "annually_if_long_term_use"},
+            {"test": "vitamin_b12", "timing": "annually_if_long_term_use"},
+            {"test": "renal_function", "timing": "if_symptoms_of_ain"},
+            {"test": "indication_review", "timing": "every_6_to_12_months"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "clopidogrel",
+                "severity": "moderate",
+                "effect": "Reduces clopidogrel activation via CYP2C19 inhibition",
+                "recommendation": "Use pantoprazole or H2 blocker instead",
+            },
+            {
+                "interacting_drug_class": "methotrexate",
+                "severity": "moderate",
+                "effect": "Increased methotrexate toxicity",
+                "recommendation": "Hold PPI around high-dose methotrexate",
+            },
+            {
+                "interacting_drug_class": "warfarin",
+                "severity": "moderate",
+                "effect": "May increase INR",
+                "recommendation": "Monitor INR after initiation",
+            },
+            {
+                "interacting_drug_class": "atazanavir",
+                "severity": "major",
+                "effect": "Markedly reduced atazanavir absorption",
+                "recommendation": "Avoid combination",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "20 mg once daily before breakfast",
+            "max_dose": "40 mg twice daily (severe disease)",
+            "renal_adjustment": "No adjustment needed",
+            "hepatic_adjustment": "Consider lower dose in severe hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "once_daily",
+
+        "adherence_factors": {
+            "pill_burden": "very_low",
+            "injection": False,
+            "titration_required": False,
+            "food_requirements": "take_30_to_60_min_before_meal",
+        },
+    },
+
+    "hydralazine": {
+        "name": "hydralazine",
+        "brand_names": ["Apresoline"],
+        "rxcui": "5470",
+        "drug_class": "direct vasodilator",
+        "atc_code": "C02DB02",
+        "mechanism": (
+            "Direct arteriolar vasodilator. Acts via stimulation of "
+            "guanylyl cyclase and reduction of intracellular calcium "
+            "in vascular smooth muscle, primarily affecting arterioles."
+        ),
+        "indications": [
+            "resistant_hypertension",
+            "heart_failure_hfref_african_american",
+            "hypertension_in_pregnancy",
+        ],
+
+        "effects": {
+            "metabolic": {
+                "hba1c_reduction_percent": 0.0,
+                "hypoglycemia_risk": "none",
+            },
+            "renal": {
+                "egfr_acute_effect": 0,
+                "egfr_slope_modifier": 1.0,
+                "renoprotective": False,
+            },
+            "cardiovascular": {
+                "mace_relative_risk": 0.57,
+                "mace_evidence": "A-HeFT trial (NEJM 2004, PMID 15533851) - in combination with isosorbide dinitrate, African American HFrEF patients",
+                "bp_systolic_change_mmhg": -10,
+                "bp_diastolic_change_mmhg": -8,
+                "afterload_reduction": "yes",
+                "reflex_tachycardia": "yes",
+            },
+            "hepatic": {
+                "alt_effect": "rare_elevation",
+                "hepatotoxicity_risk": "uncommon",
+            },
+            "weight": {
+                "direction": "neutral",
+                "expected_kg": 0.0,
+            },
+        },
+
+        "contraindications": [
+            {"condition": "coronary_artery_disease_active", "severity": "relative"},
+            {"condition": "mitral_valve_rheumatic_disease", "severity": "absolute"},
+            {"condition": "dissecting_aortic_aneurysm", "severity": "absolute"},
+            {"condition": "hydralazine_induced_lupus_history", "severity": "absolute"},
+        ],
+
+        "side_effects": [
+            {"effect": "headache", "frequency": "common", "percent": 15.0},
+            {"effect": "tachycardia", "frequency": "common", "percent": 12.0},
+            {"effect": "palpitations", "frequency": "common", "percent": 10.0},
+            {"effect": "flushing", "frequency": "common", "percent": 8.0},
+            {"effect": "drug_induced_lupus", "frequency": "uncommon", "percent": 5.0},
+            {"effect": "peripheral_neuropathy", "frequency": "rare", "percent": 0.5},
+            {"effect": "hepatitis", "frequency": "rare", "percent": 0.1},
+        ],
+
+        "monitoring": [
+            {"test": "blood_pressure", "timing": "at_each_visit"},
+            {"test": "heart_rate", "timing": "at_each_visit"},
+            {"test": "ana_titer", "timing": "if_lupus_symptoms"},
+            {"test": "cbc", "timing": "periodically"},
+        ],
+
+        "drug_interactions": [
+            {
+                "interacting_drug_class": "nitrate",
+                "severity": "minor",
+                "effect": "Additive hypotension (intentional combination in HFrEF)",
+                "recommendation": "Use as combination therapy in indicated populations",
+            },
+            {
+                "interacting_drug_class": "mao_inhibitor",
+                "severity": "moderate",
+                "effect": "Increased hypotensive effect",
+                "recommendation": "Use with caution; monitor BP",
+            },
+            {
+                "interacting_drug_class": "beta_blocker",
+                "severity": "minor",
+                "effect": "Beta blocker offsets reflex tachycardia",
+                "recommendation": "Often used together",
+            },
+        ],
+
+        "dosing": {
+            "starting_dose": "10-25 mg three or four times daily",
+            "max_dose": "300 mg per day in divided doses",
+            "renal_adjustment": "Extend dosing interval if eGFR <30",
+            "hepatic_adjustment": "Use cautiously in hepatic impairment",
+        },
+
+        "cost_tier": "$",
+        "generic_available": True,
+        "route": "oral",
+        "frequency": "three_or_four_times_daily",
+
+        "adherence_factors": {
+            "pill_burden": "high",
+            "injection": False,
+            "titration_required": True,
+            "food_requirements": "none",
+        },
+    },                
 }
 
 
@@ -2486,6 +3988,7 @@ _CLASS_ALIASES = {
 # ===========================================================================
 # CONTRAINDICATION CONDITION-MATCHING HELPERS
 # ===========================================================================
+
 
 def _condition_matches(
     contraindication_condition: str,
