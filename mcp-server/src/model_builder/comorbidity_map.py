@@ -2,7 +2,6 @@
 Comorbidity interaction mapping.
 
 Identifies active disease cascades using teammate's get_cascade_modifiers.
-Translates patient conditions into the format expected by that function.
 """
 
 import structlog
@@ -16,8 +15,7 @@ logger = structlog.get_logger(__name__)
 def build_comorbidity_map(active_conditions: list[dict]) -> dict:
     """
     Build the comorbidity interaction map.
-
-    Returns active and at-risk disease cascades.
+    Returns active disease cascades.
     """
 
     condition_keys = get_active_conditions_list(active_conditions)
