@@ -64,3 +64,7 @@ a2a_app = create_a2a_app(
 )
 
 a2a_app = A2ATranslateMiddleware(a2a_app)
+from shared.middleware import A2ATranslateMiddleware, A2AResponseFixMiddleware
+
+a2a_app = A2ATranslateMiddleware(a2a_app)
+a2a_app = A2AResponseFixMiddleware(a2a_app)  # ADD THIS LINE
