@@ -2,243 +2,460 @@
 
 # Phantom Clinical Intelligence
 
-**Longitudinal Clinical Intelligence Through MCP-Native FHIR Reasoning and Interoperable Specialist Agents**
+### Longitudinal Clinical Intelligence Through MCP-Native FHIR Reasoning and Interoperable Specialist Agents
 
-*Hackathon Submission*
+<p align="center">
+  <img src="https://img.shields.io/badge/FHIR-R4-blue" />
+  <img src="https://img.shields.io/badge/Python-3.11-green" />
+  <img src="https://img.shields.io/badge/MCP-Protocol-orange" />
+  <img src="https://img.shields.io/badge/A2A-Interoperability-purple" />
+  <img src="https://img.shields.io/badge/License-MIT-lightgrey" />
+</p>
+
+<p>
+<i>
+A longitudinal clinical reasoning platform for proactive, preventative, and systems-level healthcare intelligence.
+</i>
+</p>
 
 </div>
 
 ---
 
-## Overview
+# Executive Summary
 
-Phantom Clinical Intelligence is a longitudinal clinical reasoning and pre-visit intelligence system built on FHIR-native healthcare infrastructure. The platform combines MCP-based patient-aware reasoning with interoperable external specialist agents to generate clinically actionable longitudinal insights from structured patient data.
+Phantom Clinical Intelligence is a FHIR-native longitudinal clinical reasoning system designed to transform fragmented patient records into structured, forward-looking clinical intelligence.
 
-Rather than summarizing isolated encounters, the system reasons across time — modeling chronic disease progression, identifying preventable deterioration pathways, prioritizing interventions, and surfacing unresolved care gaps before clinical encounters occur.
+The platform combines:
+- MCP-native patient-aware reasoning
+- computational disease modeling
+- multi-system longitudinal analysis
+- preventative care prioritization
+- interoperable specialist-agent consultation
 
----
+to generate clinician-ready intelligence before patient encounters occur.
 
-## Problem Statement
-
-Modern clinical environments suffer from several systemic limitations:
-
-- **Fragmented clinical context** — Patient data is distributed across medications, labs, diagnoses, procedures, and social history. Clinicians must synthesize these manually under severe time constraints.
-- **Reactive care models** — Most systems detect disease after deterioration has already occurred rather than forecasting risk trajectories or recommending early interventions.
-- **Lack of longitudinal intelligence** — Existing tools focus on snapshots, encounter summaries, or static risk scores — not interconnected multi-system reasoning over time.
-- **Increasing chronic disease complexity** — Patients present with multimorbidity, metabolic syndrome, CKD, cardiovascular disease, and complex medication interactions that require systems-level reasoning, not isolated guideline application.
+Rather than summarizing isolated visits, Phantom reasons across time — identifying preventable deterioration pathways, forecasting chronic disease progression, surfacing unresolved care gaps, and prioritizing interventions across interconnected organ systems.
 
 ---
 
-## Architecture
+# Why This Matters
 
-```
+Modern healthcare systems generate enormous volumes of structured patient data, yet most clinical workflows remain:
+- reactive
+- fragmented
+- encounter-centric
+
+Clinicians are expected to synthesize:
+- laboratory histories
+- medications
+- chronic conditions
+- procedures
+- preventative gaps
+- longitudinal trends
+
+within extremely limited clinical time.
+
+Most existing AI systems focus on:
+- summarization
+- retrieval
+- static risk scoring
+
+Very few systems perform:
+- longitudinal disease reasoning
+- cross-system causal modeling
+- deterioration forecasting
+- proactive intervention prioritization
+
+Phantom was designed specifically to address this gap.
+
+---
+
+# System Architecture
+
+```text
                     ┌──────────────────────┐
                     │   Prompt Opinion     │
                     └──────────┬───────────┘
                                │
                                ▼
               ┌────────────────────────────────┐
-              │   Phantom Clinical Intelligence│
-              │    (Primary MCP-native Agent)  │
+              │ Phantom Clinical Intelligence  │
+              │  (Primary MCP-native Agent)    │
               └────────────────┬───────────────┘
                                │
           ┌────────────────────┴────────────────────┐
           │                                         │
           ▼                                         ▼
 ┌────────────────────┐              ┌────────────────────────┐
-│  MCP Clinical Layer│              │  External Specialist   │
-│                    │              │  A2A Agent             │
-│  - FHIR Retrieval  │              │                        │
-│  - Patient Modeling│              │  - Advanced Longitudinal│
-│  - Risk Analysis   │              │    Analysis            │
-│  - Simulation      │              │  - Specialist Reasoning│
+│ MCP Clinical Layer │              │ External Specialist    │
+│                    │              │ A2A Agent              │
+│ - FHIR Retrieval   │              │                        │
+│ - Patient Modeling │              │ - Advanced Longitudinal│
+│ - Risk Analysis    │              │   Analysis             │
+│ - Simulation       │              │ - Specialist Reasoning │
 └────────────────────┘              └────────────────────────┘
 ```
 
 ---
 
-## Core Capabilities
+# Core Platform Components
 
-### Longitudinal Clinical Intelligence
-- Multi-year disease trajectory forecasting across organ systems
-- Chronic disease progression and cascade modeling
-- Preventable deterioration pathway identification
-- Cross-system risk prioritization
+## 1. MCP Clinical Intelligence Server
 
-### FHIR-Native Reasoning
-- Direct integration with FHIR R4 resources
-- SHARP context propagation for patient-aware workflows
-- Real-time clinical context extraction per encounter
+The MCP Clinical Intelligence Server acts as the primary patient-aware computational reasoning layer.
 
-### Preventative Intervention Planning
-- Medication optimization and nephrotoxic burden assessment
-- Care-gap detection and monitoring recommendations
-- Early intervention prioritization ranked by clinical impact
+It is responsible for:
+- retrieving FHIR R4 patient resources
+- assembling computational longitudinal patient models
+- performing organ-system-specific risk analysis
+- forecasting disease trajectories
+- identifying preventable deterioration pathways
+- exposing clinical reasoning tools through MCP
 
-### Computational Risk Modeling
-- CKD progression with KDIGO staging and eGFR trajectory analysis
-- ASCVD risk and cardiovascular deterioration modeling
-- Metabolic syndrome forecasting and diabetes conversion risk
-- MASLD progression and hepatic risk assessment
+The server performs longitudinal reasoning across:
+- renal systems
+- cardiovascular systems
+- metabolic systems
+- hepatic systems
 
-### Specialist Escalation Architecture
-- MCP-native orchestration layer
-- External A2A specialist consultation for complex multimorbidity
-- Modular interoperability design with distributed agent workflows
+while also integrating:
+- medication burden analysis
+- preventative care intelligence
+- social determinant awareness
+- longitudinal monitoring gaps
 
----
-
-## Organ System Intelligence Modules
-
-### Renal Intelligence
-eGFR trend analysis, CKD staging, albuminuria classification, KDIGO risk stratification, nephrotoxic medication exposure assessment, renoprotective coverage evaluation, and CKD trajectory forecasting.
-
-### Cardiovascular Intelligence
-Hypertension control analysis, ASCVD risk reasoning, long-term myocardial infarction and stroke risk modeling, heart failure progression assessment, and medication optimization opportunities.
-
-### Metabolic Intelligence
-Obesity trajectory modeling, prediabetes and metabolic syndrome progression, diabetes conversion risk forecasting, and weight-based intervention identification.
-
-### Hepatic Intelligence
-MASLD risk assessment, obesity-related liver disease modeling, cirrhosis progression identification, and missing monitoring detection (AST, ALT, bilirubin, platelets, albumin).
+### Published MCP Endpoint
+`<ADD_MCP_SERVER_LINK_HERE>`
 
 ---
 
-## Longitudinal Disease Reasoning
+## 2. External A2A Specialist Agent
 
-The system models causal disease cascades rather than isolated diagnoses. Examples of interconnected reasoning chains:
+The External Specialist Agent provides interoperable specialist consultation capabilities using the A2A protocol.
 
-- Obesity → Sleep Apnea → Hypertension → CKD acceleration
-- Metabolic Syndrome → MASLD progression
-- Nephrotoxic medications → Accelerated renal decline
-- Uncontrolled hypertension → Cardiovascular event trajectory
+This component was designed to explore:
+- distributed clinical reasoning
+- modular specialist escalation
+- interoperable multi-agent workflows
+- longitudinal consultation architectures
 
-This systems-level reasoning differentiates the platform from traditional clinical summarization.
+The specialist agent can:
+- receive patient-aware contextual requests
+- analyze advanced multimorbidity cases
+- provide specialist longitudinal intelligence
+- return structured clinical outputs compatible with orchestrator workflows
+
+Custom middleware was implemented to support:
+- A2A protocol normalization
+- JSON-RPC compatibility handling
+- task schema correction
+- role normalization
+- response shaping for Prompt Opinion interoperability
+
+### Published External A2A Endpoint
+`<ADD_EXTERNAL_AGENT_LINK_HERE>`
 
 ---
 
-## Clinical Intelligence Workflow
+## 3. Orchestrator Agent
 
-1. FHIR patient context is received through SHARP context propagation
-2. MCP retrieves structured patient data from the FHIR server
-3. A computational longitudinal patient model is assembled
-4. Organ-system intelligence modules analyze disease trajectories
-5. Preventable deterioration pathways are identified
-6. Care gaps and intervention opportunities are prioritized
-7. Specialist escalation is triggered for complex multimorbidity cases
-8. Structured, clinician-ready pre-visit intelligence is returned
+The Orchestrator Agent coordinates the overall longitudinal intelligence workflow.
+
+It is responsible for:
+- receiving clinical requests
+- managing MCP tool execution
+- coordinating patient-model construction
+- triggering longitudinal simulations
+- routing specialist escalation when required
+- generating structured clinician-ready outputs
+
+The orchestrator serves as the central intelligence layer connecting:
+- Prompt Opinion
+- MCP-native reasoning tools
+- and external A2A specialist agents
+
+It dynamically determines:
+- which tools should execute
+- which risk domains should be analyzed
+- whether specialist escalation is warranted
+- and how structured outputs should be generated
+
+### Published Orchestrator Endpoint
+`<ADD_ORCHESTRATOR_LINK_HERE>`
 
 ---
 
-## Repository Structure
+# Clinical Intelligence Workflow
 
+```text
+FHIR Context
+    ↓
+MCP Retrieval
+    ↓
+Computational Patient Model
+    ↓
+Longitudinal Risk Analysis
+    ↓
+Care Gap Identification
+    ↓
+Intervention Prioritization
+    ↓
+Optional Specialist Escalation
+    ↓
+Structured Pre-Visit Intelligence
 ```
+
+---
+
+# Core Capabilities
+
+## Longitudinal Disease Intelligence
+- Multi-year disease trajectory forecasting
+- Chronic disease cascade modeling
+- Progressive deterioration identification
+- Temporal patient-state reasoning
+
+## FHIR-Native Clinical Reasoning
+- Direct FHIR R4 integration
+- SHARP context propagation
+- Patient-aware MCP workflows
+- Real-time contextualized retrieval
+
+## Computational Risk Modeling
+- CKD progression analysis
+- ASCVD trajectory modeling
+- Metabolic syndrome forecasting
+- MASLD progression assessment
+- Medication burden analysis
+
+## Preventative Care Intelligence
+- Intervention prioritization
+- Care-gap detection
+- Monitoring recommendations
+- Early-risk interception
+- Medication optimization opportunities
+
+## Interoperable Specialist Escalation
+- MCP-native orchestration
+- External A2A specialist consultation
+- Distributed clinical reasoning
+- Modular multi-agent architecture
+
+---
+
+# Organ System Intelligence Modules
+
+## Renal Intelligence
+- eGFR trajectory analysis
+- CKD staging and KDIGO stratification
+- Albuminuria assessment
+- Renoprotective coverage analysis
+- Nephrotoxic medication burden detection
+
+## Cardiovascular Intelligence
+- ASCVD trajectory modeling
+- Hypertension progression analysis
+- Cardiovascular event forecasting
+- Heart failure deterioration assessment
+
+## Metabolic Intelligence
+- Obesity progression modeling
+- Prediabetes conversion forecasting
+- Metabolic syndrome analysis
+- Weight-driven deterioration reasoning
+
+## Hepatic Intelligence
+- MASLD risk assessment
+- Obesity-associated hepatic progression
+- Missing liver surveillance detection
+- Cirrhosis progression identification
+
+---
+
+# Longitudinal Systems-Level Reasoning
+
+The platform models interconnected disease cascades rather than isolated diagnoses.
+
+### Example Cascades
+
+```text
+Obesity
+  → Sleep Apnea
+    → Hypertension
+      → Accelerated CKD Risk
+```
+
+```text
+Metabolic Syndrome
+  → Insulin Resistance
+    → Hepatic Steatosis
+      → MASLD Progression
+```
+
+```text
+NSAID Exposure
+  → Nephrotoxic Burden
+    → Progressive Renal Decline
+```
+
+This systems-level reasoning differentiates Phantom from traditional encounter summarization systems.
+
+---
+
+# Repository Structure
+
+```text
 .
-├── agents/
+├── agent-config/
+│   ├── prompts/
+│   ├── schemas/
+│   └── examples/
+│
+├── docs/
+│   ├── architecture/
+│   ├── workflows/
+│   └── screenshots/
+│
+├── mcp-server/
+│   ├── src/
+│   │   ├── server.py
+│   │   ├── tools/
+│   │   ├── systems/
+│   │   │   ├── renal.py
+│   │   │   ├── cardiovascular.py
+│   │   │   ├── metabolic.py
+│   │   │   └── hepatic.py
+│   │   ├── model_builder/
+│   │   ├── evidence/
+│   │   └── clients/
+│   │
+│   └── requirements.txt
+│
+├── phantom-adk/
 │   ├── orchestrator/
 │   │   ├── agent.py
 │   │   ├── main.py
 │   │   └── prompts/
+│   │
+│   ├── shared/
+│   │   ├── adk_tools.py
+│   │   ├── app_factory.py
+│   │   ├── fhir_hook.py
+│   │   ├── mcp_client.py
+│   │   └── middleware.py
+│   │
 │   └── external_specialist/
 │       ├── agent.py
 │       ├── main.py
 │       └── middleware.py
 │
-├── mcp-server/
-│   └── src/
-│       ├── server.py
-│       ├── tools/
-│       ├── model_builder/
-│       ├── evidence/
-│       └── systems/
-│           ├── renal.py
-│           ├── cardiovascular.py
-│           ├── metabolic.py
-│           └── hepatic.py
+├── test-data/
+│   ├── fhir/
+│   └── examples/
 │
-├── shared/
-│   ├── mcp_client.py
-│   ├── fhir_hook.py
-│   ├── middleware.py
-│   ├── app_factory.py
-│   └── adk_tools.py
-│
-├── examples/
-├── docs/
-└── README.md
+├── README.md
+├── LICENSE
+├── .gitignore
+└── .env.example
 ```
 
 ---
 
-## Key Components
+# Key Components
 
-| File | Responsibility |
+| Component | Responsibility |
 |---|---|
-| `fhir_hook.py` | Extracts SHARP/FHIR context and propagates patient-aware metadata into the orchestration layer |
-| `middleware.py` | Handles A2A protocol normalization, compatibility translation, and response shaping |
-| `mcp_client.py` | Communication layer between orchestrator agents and MCP clinical tools |
-| `renal.py` | Longitudinal renal risk modeling — eGFR, CKD staging, KDIGO, nephrotoxic burden |
-| `agent.py` | Primary clinical intelligence orchestration workflow definition |
+| `fhir_hook.py` | Extracts SHARP/FHIR context and propagates patient-aware metadata |
+| `middleware.py` | Handles A2A protocol normalization and response compatibility |
+| `mcp_client.py` | Communication layer between orchestrator agents and MCP tools |
+| `renal.py` | Longitudinal renal risk modeling and CKD intelligence |
+| `agent.py` | Primary orchestration workflow for clinical intelligence generation |
 | `server.py` | MCP server exposing patient-aware clinical reasoning tools |
 
 ---
 
-## Technology Stack
+# Technology Stack
 
 | Layer | Technology |
 |---|---|
 | Runtime | Python 3.11 |
 | Agent Framework | Google ADK |
-| Agent Protocol | MCP Protocol, A2A Protocol |
-| LLM Backend | LiteLLM + Gemini Models |
-| API Layer | FastAPI |
-| Clinical Data Standard | FHIR R4 |
-| Patient Context | SHARP Context Propagation |
+| Protocols | MCP, A2A |
+| LLM Layer | LiteLLM + Gemini |
+| API Framework | FastAPI |
+| Clinical Standard | FHIR R4 |
+| Context Propagation | SHARP |
 | Deployment | Cloud Run, ngrok |
-| Synthetic Data | Synthea™ Synthetic Patient Generator |
+| Synthetic Data | Synthea™ |
 
 ---
 
-## Endpoints
+# Data Source
 
-| Component | Endpoint |
-|---|---|
-| MCP Clinical Server | `<ADD_MCP_SERVER_LINK_HERE>` |
-| External Specialist Agent | `<ADD_EXTERNAL_AGENT_LINK_HERE>` |
-| Orchestrator Agent | `<ADD_ORCHESTRATOR_LINK_HERE>` |
+Synthetic patient records were generated using:
+
+### Synthea™ Synthetic Patient Generator
+
+https://synthetichealth.github.io/synthea/
+
+FHIR R4 resources used throughout the platform include:
+- Patients
+- Conditions
+- Observations
+- MedicationRequests
+- Encounters
+- Procedures
+- Immunizations
+- AllergyIntolerances
+- CarePlans
+
+This enabled realistic longitudinal testing without real patient data.
 
 ---
 
-## Data Source
+# Future Directions
 
-Synthetic patient records were generated using [Synthea™](https://synthetichealth.github.io/synthea/). FHIR R4 resources were used throughout — Patients, Conditions, Observations, MedicationRequests, Encounters, Procedures, AllergyIntolerances, Immunizations, and CarePlans — enabling realistic longitudinal testing without real patient data.
+## Clinical Modeling
+- Oncology progression modeling
+- Neurological deterioration forecasting
+- Polypharmacy interaction intelligence
+- Personalized intervention simulation
 
----
+## Infrastructure
+- Persistent vector memory
+- Distributed asynchronous orchestration
+- Unified clinical routing gateway
+- Event-driven monitoring workflows
 
-## Future Work
-
-**Clinical Expansion**
-- Oncology and neurological progression modeling
-- Polypharmacy interaction analysis
-- Personalized treatment simulation
-
-**Infrastructure**
-- Unified gateway routing and persistent vector memory
-- Asynchronous multi-agent orchestration
-- Distributed deployment infrastructure
-
-**Intelligence Layer**
-- Confidence-calibrated reasoning with evidence citation
-- Adaptive specialist escalation routing
+## Intelligence Layer
+- Confidence-calibrated reasoning
+- Evidence citation generation
+- Adaptive specialist escalation
 - Temporal patient graph modeling
 
-**Clinical Integration**
-- SMART-on-FHIR integration
-- EHR-native deployment
-- Real-time deterioration monitoring hooks
+## Clinical Integration
+- SMART-on-FHIR deployment
+- EHR-native integration
+- Real-time deterioration monitoring
+- Clinical workflow embedding
 
 ---
 
-## Disclaimer
+# Research Direction
 
-This project is intended for research, educational, and hackathon purposes only. It is not a medical device and must not be used for real-world clinical decision-making without appropriate validation and regulatory review.
+This project explores how:
+- longitudinal computational reasoning
+- interoperable agent systems
+- FHIR-native infrastructure
+- preventative intelligence
+
+can augment future healthcare decision-support workflows.
+
+---
+
+# Disclaimer
+
+This project is intended for research, educational, and hackathon purposes only.
+
+It is not a medical device and should not be used for real-world clinical decision-making without appropriate clinical validation or regulatory approval.
