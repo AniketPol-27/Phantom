@@ -39,6 +39,154 @@ Rather than summarizing isolated visits, Phantom reasons across time — identif
 
 ---
 
+# System Overview
+
+The Phantom ecosystem is composed of three major components:
+
+| Component | Role |
+|---|---|
+| **Phantom Nexus Agent** | Central orchestration and intelligence coordination layer |
+| **Phantom MCP Server** | Computational patient modeling and longitudinal reasoning engine |
+| **Phantom Specialist Intelligence Agent** | Interoperable specialist consultation and escalation layer |
+
+---
+
+# Platform Architecture
+
+```text
+                    ┌──────────────────────┐
+                    │    Prompt Opinion    │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+              ┌────────────────────────────────┐
+              │     Phantom Nexus Agent        │
+              │   (Central Orchestration AI)   │
+              └────────────────┬───────────────┘
+                               │
+          ┌────────────────────┴────────────────────┐
+          │                                         │
+          ▼                                         ▼
+┌────────────────────────┐         ┌────────────────────────────┐
+│   Phantom MCP Server   │         │ Phantom Specialist         │
+│                        │         │ Intelligence Agent         │
+│ - FHIR Retrieval       │         │                            │
+│ - Patient Modeling     │         │ - Advanced Longitudinal    │
+│ - Risk Analysis        │         │   Consultation             │
+│ - Simulation           │         │ - Specialist Reasoning     │
+│ - Forecasting          │         │ - Interoperable A2A Logic  │
+└────────────────────────┘         └────────────────────────────┘
+```
+
+---
+
+# Component Responsibilities
+
+---
+
+# 1. Phantom Nexus Agent
+
+The **Phantom Nexus Agent** acts as the central intelligence and orchestration layer for the entire platform.
+
+This agent is configured directly within Prompt Opinion and serves as the primary user-facing intelligence interface.
+
+Responsibilities include:
+- coordinating longitudinal clinical workflows
+- managing MCP tool invocation
+- orchestrating patient-model generation
+- triggering longitudinal simulations
+- identifying care gaps and intervention priorities
+- escalating to specialist consultation when appropriate
+- generating structured clinician-ready outputs
+
+The Nexus Agent acts as the bridge between:
+- Prompt Opinion
+- the Phantom MCP Server
+- and the Phantom Specialist Intelligence Agent
+
+### Built Using
+- Prompt Opinion Agent Framework
+- A2A orchestration logic
+- Custom middleware integration
+
+### Published Endpoint
+`<ADD_PHANTOM_NEXUS_AGENT_LINK_HERE>`
+
+---
+
+# 2. Phantom MCP Server
+
+The **Phantom MCP Server** is the computational clinical intelligence engine of the platform.
+
+It performs patient-aware longitudinal reasoning directly over FHIR R4 resources.
+
+Core responsibilities include:
+- FHIR retrieval and contextualization
+- computational patient-model construction
+- organ-system longitudinal analysis
+- disease trajectory forecasting
+- intervention simulation
+- preventative care intelligence
+- longitudinal monitoring analysis
+- medication burden assessment
+
+The MCP server performs systems-level reasoning across:
+- renal disease progression
+- cardiovascular risk
+- metabolic deterioration
+- hepatic disease trajectories
+
+while integrating:
+- medication effects
+- chronic disease interactions
+- longitudinal trends
+- preventative opportunities
+
+### Built Using
+- Python
+- FastAPI
+- MCP protocol tooling
+- Custom longitudinal reasoning systems
+
+### Published Endpoint
+`<ADD_PHANTOM_MCP_SERVER_LINK_HERE>`
+
+---
+
+# 3. Phantom Specialist Intelligence Agent
+
+The **Phantom Specialist Intelligence Agent** provides interoperable specialist consultation capabilities using the A2A protocol.
+
+This component was designed to explore:
+- distributed clinical reasoning
+- modular specialist escalation
+- interoperable multi-agent workflows
+- advanced longitudinal consultation architectures
+
+The specialist agent can:
+- receive patient-aware contextual requests
+- analyze advanced multimorbidity cases
+- perform specialist longitudinal reasoning
+- return structured consultation intelligence
+- support escalation workflows initiated by the Nexus Agent
+
+Custom middleware was implemented to support:
+- A2A protocol normalization
+- JSON-RPC compatibility handling
+- task schema correction
+- role normalization
+- response shaping for Prompt Opinion interoperability
+
+### Built Using
+- Google ADK
+- A2A protocol integration
+- Custom middleware translation layers
+
+### Published Endpoint
+`<ADD_PHANTOM_SPECIALIST_AGENT_LINK_HERE>`
+
+---
+
 # Why This Matters
 
 Modern healthcare systems generate enormous volumes of structured patient data, yet most clinical workflows remain:
@@ -71,127 +219,14 @@ Phantom was designed specifically to address this gap.
 
 ---
 
-# System Architecture
-
-```text
-                    ┌──────────────────────┐
-                    │   Prompt Opinion     │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-              ┌────────────────────────────────┐
-              │ Phantom Clinical Intelligence  │
-              │  (Primary MCP-native Agent)    │
-              └────────────────┬───────────────┘
-                               │
-          ┌────────────────────┴────────────────────┐
-          │                                         │
-          ▼                                         ▼
-┌────────────────────┐              ┌────────────────────────┐
-│ MCP Clinical Layer │              │ External Specialist    │
-│                    │              │ A2A Agent              │
-│ - FHIR Retrieval   │              │                        │
-│ - Patient Modeling │              │ - Advanced Longitudinal│
-│ - Risk Analysis    │              │   Analysis             │
-│ - Simulation       │              │ - Specialist Reasoning │
-└────────────────────┘              └────────────────────────┘
-```
-
----
-
-# Core Platform Components
-
-## 1. MCP Clinical Intelligence Server
-
-The MCP Clinical Intelligence Server acts as the primary patient-aware computational reasoning layer.
-
-It is responsible for:
-- retrieving FHIR R4 patient resources
-- assembling computational longitudinal patient models
-- performing organ-system-specific risk analysis
-- forecasting disease trajectories
-- identifying preventable deterioration pathways
-- exposing clinical reasoning tools through MCP
-
-The server performs longitudinal reasoning across:
-- renal systems
-- cardiovascular systems
-- metabolic systems
-- hepatic systems
-
-while also integrating:
-- medication burden analysis
-- preventative care intelligence
-- social determinant awareness
-- longitudinal monitoring gaps
-
-### Published MCP Endpoint
-`<ADD_MCP_SERVER_LINK_HERE>`
-
----
-
-## 2. External A2A Specialist Agent
-
-The External Specialist Agent provides interoperable specialist consultation capabilities using the A2A protocol.
-
-This component was designed to explore:
-- distributed clinical reasoning
-- modular specialist escalation
-- interoperable multi-agent workflows
-- longitudinal consultation architectures
-
-The specialist agent can:
-- receive patient-aware contextual requests
-- analyze advanced multimorbidity cases
-- provide specialist longitudinal intelligence
-- return structured clinical outputs compatible with orchestrator workflows
-
-Custom middleware was implemented to support:
-- A2A protocol normalization
-- JSON-RPC compatibility handling
-- task schema correction
-- role normalization
-- response shaping for Prompt Opinion interoperability
-
-### Published External A2A Endpoint
-`<ADD_EXTERNAL_AGENT_LINK_HERE>`
-
----
-
-## 3. Orchestrator Agent
-
-The Orchestrator Agent coordinates the overall longitudinal intelligence workflow.
-
-It is responsible for:
-- receiving clinical requests
-- managing MCP tool execution
-- coordinating patient-model construction
-- triggering longitudinal simulations
-- routing specialist escalation when required
-- generating structured clinician-ready outputs
-
-The orchestrator serves as the central intelligence layer connecting:
-- Prompt Opinion
-- MCP-native reasoning tools
-- and external A2A specialist agents
-
-It dynamically determines:
-- which tools should execute
-- which risk domains should be analyzed
-- whether specialist escalation is warranted
-- and how structured outputs should be generated
-
-### Published Orchestrator Endpoint
-`<ADD_ORCHESTRATOR_LINK_HERE>`
-
----
-
 # Clinical Intelligence Workflow
 
 ```text
 FHIR Context
     ↓
-MCP Retrieval
+Phantom Nexus Agent
+    ↓
+Phantom MCP Server
     ↓
 Computational Patient Model
     ↓
@@ -203,7 +238,9 @@ Intervention Prioritization
     ↓
 Optional Specialist Escalation
     ↓
-Structured Pre-Visit Intelligence
+Phantom Specialist Intelligence Agent
+    ↓
+Structured Clinical Intelligence Output
 ```
 
 ---
@@ -334,8 +371,8 @@ This systems-level reasoning differentiates Phantom from traditional encounter s
 │
 ├── phantom-adk/
 │   ├── orchestrator/
+│   │   ├── app.py
 │   │   ├── agent.py
-│   │   ├── main.py
 │   │   └── prompts/
 │   │
 │   ├── shared/
@@ -346,8 +383,8 @@ This systems-level reasoning differentiates Phantom from traditional encounter s
 │   │   └── middleware.py
 │   │
 │   └── external_specialist/
+│       ├── app.py
 │       ├── agent.py
-│       ├── main.py
 │       └── middleware.py
 │
 ├── test-data/
