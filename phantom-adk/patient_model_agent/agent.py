@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 load_dotenv(override=True)
-os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY", "")
+os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY", "")
 
 from google.adk.agents import LlmAgent
 from google.adk.models.lite_llm import LiteLlm
@@ -47,7 +47,7 @@ OUTPUT STYLE:
 
 root_agent = LlmAgent(
     name="patient_model_agent",
-    model=LiteLlm(model="groq/llama-3.3-70b-versatile"),
+    model=LiteLlm(model="gemini/gemini-2.5-flash"),
     description=(
         "Builds and interprets computational patient models "
         "using Phantom MCP."

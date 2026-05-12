@@ -3,9 +3,9 @@ from dotenv import load_dotenv
 
 # MUST be absolutely first — before any other imports
 load_dotenv(override=True)
-os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY", "")
+os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY", "")
 
-print(f">>> GROQ KEY LOADED: {os.environ.get('GROQ_API_KEY', 'MISSING')[:15]}...")
+print(f">>> GEMINI KEY LOADED: {os.environ.get('GOOGLE_API_KEY', 'MISSING')[:15]}...")
 
 from a2a.types import AgentSkill
 from shared.app_factory import create_a2a_app

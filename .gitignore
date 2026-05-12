@@ -65,3 +65,6 @@ Thumbs.db
 *.pid
 *.sqlite
 *.db
+synthea/
+synthea-output/
+*.jar
