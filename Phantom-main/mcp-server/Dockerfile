@@ -1,0 +1,72 @@
+[project]
+name = "phantom-mcp-server"
+version = "0.1.0"
+description = "Clinical simulation MCP server — patient digital twin for clinical reasoning"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Phantom Contributors" }
+]
+
+dependencies = [
+    # MCP SDK
+    "mcp>=1.0.0",
+    
+    # Web server
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "starlette>=0.40.0",
+    
+    # HTTP client for FHIR and external APIs
+    "httpx>=0.27.0",
+    
+    # Data models and validation
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.6.0",
+    
+    # FHIR resource handling
+    "fhir.resources>=7.1.0",
+    
+    # Numerical computation for trajectories and risk scores
+    "numpy>=2.1.0",
+    "scipy>=1.14.0",
+    
+    # Date and time utilities
+    "python-dateutil>=2.9.0",
+    
+    # Logging
+    "structlog>=24.4.0",
+    
+    # Environment variable loading
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.7.0",
+    "mypy>=1.13.0",
+    "respx>=0.21.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
