@@ -1,8 +1,7 @@
 """
 Tool: compare_interventions
 
-Compares multiple interventions against the computational
-patient model and ranks likely clinical benefit.
+Advanced comparative longitudinal intervention engine.
 """
 
 import json
@@ -22,13 +21,13 @@ async def compare_interventions(
     patient_model: Annotated[
         dict[str, Any],
         Field(
-            description="The computational patient model.",
+            description="Computational patient model.",
         ),
     ],
     clinical_question: Annotated[
         str,
         Field(
-            description="The clinical decision being evaluated.",
+            description="Clinical decision under evaluation.",
         ),
     ],
     interventions: Annotated[
@@ -42,7 +41,7 @@ async def compare_interventions(
     prioritize_dimensions: Annotated[
         list[str] | None,
         Field(
-            description="Preferred outcome dimensions.",
+            description="Preferred optimization dimensions.",
             default=None,
         ),
     ] = None,
@@ -50,6 +49,7 @@ async def compare_interventions(
 
     try:
         sharp = extract_sharp_context(ctx)
+
     except SharpContextError as e:
         return json.dumps({
             "error": "FHIR context required",
@@ -57,19 +57,21 @@ async def compare_interventions(
         })
 
     logger.info(
-        "compare_interventions.invoked",
+        "compare_interventions.start",
         patient_id=sharp.patient_id_only,
         intervention_count=len(interventions),
     )
 
-    renal = (
-        patient_model.get("system_models", {})
-        .get("renal", {})
+    system_models = patient_model.get(
+        "system_models",
+        {},
     )
 
-    metabolic = (
-        patient_model.get("system_models", {})
-        .get("metabolic", {})
+    renal = system_models.get("renal", {})
+    metabolic = system_models.get("metabolic", {})
+    cardiovascular = system_models.get(
+        "cardiovascular",
+        {},
     )
 
     priorities = patient_model.get(
@@ -77,12 +79,48 @@ async def compare_interventions(
         [],
     )
 
+    # ============================================================
+    # Dynamic Patient Weighting
+    # ============================================================
+
+    renal_weight = 1.0
+    metabolic_weight = 1.0
+    cardiovascular_weight = 1.0
+
+    for priority in priorities:
+
+        system = priority.get("system")
+
+        if system == "renal":
+            renal_weight += 0.5
+
+        elif system == "metabolic":
+            metabolic_weight += 0.5
+
+        elif system == "cardiovascular":
+            cardiovascular_weight += 0.5
+
     comparisons = []
+
+    # ============================================================
+    # Evaluate Interventions
+    # ============================================================
 
     for intervention in interventions:
 
-        label = intervention.get("label", "Unnamed intervention")
-        drug_class = intervention.get("drug_class", "").lower()
+        label = intervention.get(
+            "label",
+            "Unnamed intervention",
+        )
+
+        drug_class = intervention.get(
+            "drug_class",
+            "",
+        ).lower()
+
+        rationale = []
+        longitudinal_benefits = []
+        tradeoffs = []
 
         renal_score = 50
         metabolic_score = 50
@@ -90,145 +128,301 @@ async def compare_interventions(
         safety_score = 50
         adherence_score = 50
 
-        rationale = []
-
         # ========================================================
-        # SGLT2 Inhibitors
+        # SGLT2
         # ========================================================
 
         if drug_class == "sglt2_inhibitor":
 
-            renal_score = 95
+            renal_score = 96
             cardiovascular_score = 88
             metabolic_score = 72
-            safety_score = 80
+            safety_score = 82
             adherence_score = 85
 
             rationale.extend([
-                "Strong renal protection benefit",
-                "Reduces CKD progression risk",
-                "Cardiovascular protection supported",
+                "Strong evidence for renal protection",
+                "Reduces CKD progression velocity",
+                "Provides cardiovascular benefit",
             ])
 
-            reno_coverage = renal.get(
-                "renoprotective_coverage",
-                {},
-            )
+            longitudinal_benefits.extend([
+                "Likely slows eGFR decline",
+                "May delay CKD progression",
+                "Reduces long-term cardiovascular convergence risk",
+            ])
 
-            if reno_coverage.get(
-                "coverage_score"
-            ) == "missing_sglt2i_gap":
-                renal_score += 5
-                rationale.append(
-                    "Addresses current renoprotective therapy gap"
-                )
+            tradeoffs.extend([
+                "Requires renal function monitoring",
+                "Risk of genitourinary side effects",
+            ])
 
         # ========================================================
-        # GLP1 Agonists
+        # GLP1
         # ========================================================
 
         elif drug_class == "glp1_agonist":
 
-            metabolic_score = 94
-            cardiovascular_score = 82
+            metabolic_score = 95
+            cardiovascular_score = 84
             renal_score = 68
             safety_score = 75
-            adherence_score = 70
+            adherence_score = 72
 
             rationale.extend([
-                "Strong HbA1c reduction potential",
+                "Strong glycemic improvement potential",
                 "Supports weight reduction",
-                "Cardiovascular benefit potential",
+                "Cardiovascular benefit supported",
+            ])
+
+            longitudinal_benefits.extend([
+                "Improves metabolic trajectory",
+                "May reduce long-term ASCVD burden",
+                "Supports obesity-related risk reduction",
+            ])
+
+            tradeoffs.extend([
+                "GI side effects possible",
+                "Injection burden may reduce adherence",
             ])
 
         # ========================================================
-        # Insulin
+        # INSULIN
         # ========================================================
 
         elif drug_class == "insulin":
 
             metabolic_score = 92
             cardiovascular_score = 55
-            renal_score = 50
+            renal_score = 52
             safety_score = 60
             adherence_score = 45
 
             rationale.extend([
-                "Strong glycemic reduction",
-                "Higher adherence burden",
-                "Hypoglycemia monitoring required",
+                "Strong glycemic lowering capability",
+                "Rapid HbA1c reduction potential",
+            ])
+
+            longitudinal_benefits.extend([
+                "Improves severe hyperglycemia",
+            ])
+
+            tradeoffs.extend([
+                "Hypoglycemia risk",
+                "High adherence burden",
+                "Requires monitoring intensity",
             ])
 
         # ========================================================
-        # Generic fallback
+        # ACE/ARB
+        # ========================================================
+
+        elif drug_class in [
+            "ace_inhibitor",
+            "arb",
+        ]:
+
+            renal_score = 88
+            cardiovascular_score = 82
+            metabolic_score = 52
+            safety_score = 80
+            adherence_score = 88
+
+            rationale.extend([
+                "Strong renal hemodynamic protection",
+                "Blood pressure optimization benefit",
+            ])
+
+            longitudinal_benefits.extend([
+                "Slows renal progression",
+                "Reduces cardiovascular strain",
+            ])
+
+            tradeoffs.extend([
+                "Requires potassium monitoring",
+            ])
+
+        # ========================================================
+        # FALLBACK
         # ========================================================
 
         else:
+
             rationale.append(
-                "Limited evidence model available for this intervention"
+                "Limited evidence profile available."
             )
 
-        composite_score = round(
+            tradeoffs.append(
+                "Comparative confidence reduced."
+            )
+
+        # ========================================================
+        # Weighted Composite
+        # ========================================================
+
+        weighted_score = round(
             (
-                renal_score
-                + metabolic_score
-                + cardiovascular_score
+                renal_score * renal_weight
+                + metabolic_score * metabolic_weight
+                + cardiovascular_score * cardiovascular_weight
                 + safety_score
                 + adherence_score
-            ) / 5
+            )
+            /
+            (
+                renal_weight
+                + metabolic_weight
+                + cardiovascular_weight
+                + 2
+            )
         )
 
+        # ========================================================
+        # Confidence
+        # ========================================================
+
+        if drug_class in [
+            "sglt2_inhibitor",
+            "glp1_agonist",
+            "insulin",
+            "ace_inhibitor",
+            "arb",
+        ]:
+            confidence = "high"
+        else:
+            confidence = "moderate"
+
         comparisons.append({
+
             "label": label,
+
             "drug_class": drug_class,
 
             "scores": {
+
                 "renal_protection": renal_score,
+
                 "metabolic_benefit": metabolic_score,
+
                 "cardiovascular_benefit": cardiovascular_score,
+
                 "safety": safety_score,
+
                 "adherence": adherence_score,
-                "composite": composite_score,
+
+                "weighted_composite": weighted_score,
             },
 
+            "confidence": confidence,
+
             "rationale": rationale,
+
+            "longitudinal_benefits": longitudinal_benefits,
+
+            "tradeoffs": tradeoffs,
         })
 
     # ============================================================
-    # Sort Best First
+    # Rank Interventions
     # ============================================================
 
     comparisons = sorted(
         comparisons,
-        key=lambda x: x["scores"]["composite"],
+        key=lambda x: x["scores"]["weighted_composite"],
         reverse=True,
     )
 
+    top_choice = comparisons[0]
+
     # ============================================================
-    # Recommendation
+    # Strategic Summary
     # ============================================================
 
-    top_choice = comparisons[0] if comparisons else None
+    strategic_summary = (
+        f"{top_choice['label']} appears to provide the "
+        f"strongest projected longitudinal benefit profile "
+        f"for this patient's dominant risk structure."
+    )
+
+    # ============================================================
+    # Comparative Insights
+    # ============================================================
+
+    comparative_insights = []
+
+    if len(comparisons) >= 2:
+
+        best = comparisons[0]
+        second = comparisons[1]
+
+        comparative_insights.append(
+            f"{best['label']} ranked above "
+            f"{second['label']} due to stronger "
+            f"multi-system longitudinal protection."
+        )
+
+    # ============================================================
+    # Output
+    # ============================================================
 
     response = {
+
         "clinical_question": clinical_question,
 
         "patient_context": {
+
             "priority_count": len(priorities),
+
             "renal_risk": renal.get("kdigo_risk"),
+
             "glycemic_control": metabolic.get(
                 "glycemic_control"
             ),
+
+            "cardiovascular_risk": cardiovascular.get(
+                "ascvd_10yr_risk"
+            ),
         },
+
+        "strategy_summary": strategic_summary,
+
+        "comparative_insights": comparative_insights,
 
         "comparisons": comparisons,
 
         "recommended_intervention": top_choice,
 
+        "optimization_weights": {
+
+            "renal_weight": renal_weight,
+
+            "metabolic_weight": metabolic_weight,
+
+            "cardiovascular_weight": cardiovascular_weight,
+        },
+
         "methodology": (
-            "Deterministic multi-system intervention scoring "
-            "using the Phantom computational patient model."
+            "Dynamic longitudinal multi-system intervention "
+            "comparison using the Phantom computational "
+            "patient model."
         ),
+
+        "comparison_metadata": {
+
+            "engine_version": "6.0",
+
+            "comparison_type": "longitudinal_intervention_analysis",
+        },
     }
 
-    return json.dumps(response, indent=2, default=str)
+    logger.info(
+        "compare_interventions.complete",
+        patient_id=sharp.patient_id_only,
+        recommended=top_choice["label"],
+    )
+
+    return json.dumps(
+        response,
+        indent=2,
+        default=str,
+    )

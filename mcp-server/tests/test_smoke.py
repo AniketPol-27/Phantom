@@ -38,7 +38,7 @@ def test_mcp_instance_imports():
     """The FastMCP instance should be created with our extension patched in."""
     from src.mcp_instance import mcp
     assert mcp is not None
-    assert mcp.name == "Phantom"
+    assert mcp.name == "Phantom Clinical Intelligence Platform"
 
 
 def test_po_extension_in_capabilities():

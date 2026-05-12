@@ -175,33 +175,74 @@ async def build_patient_model(
     if m.get("is_active")
 ]
     model = {
-        "_round": "3.2",
-        "_message": (
-            "Round 3 Chunk 2 patient model: parsed and clean. "
-            "Round 4 will add system models, trajectories, and risk scores."
-        ),
-        "patient": patient,
-        "conditions": parse_section("conditions", parse_condition, "Condition"),
-        "medications": parse_section("medication_requests", parse_medication_request, "MedicationRequest"),
-        "lab_observations": parse_section("lab_observations", parse_observation, "Observation"),
-        "vital_observations": parse_section("vital_observations", parse_observation, "Observation"),
-        "allergies": parse_section("allergies", parse_allergy, "AllergyIntolerance"),
-        "procedures": parse_section("procedures", parse_procedure, "Procedure"),
-        "immunizations": parse_section("immunizations", parse_immunization, "Immunization"),
-        "encounters": parse_section("encounters", parse_encounter, "Encounter"),
-        "parameters": {
-            "model_depth": model_depth,
-            "lookback_months": lookback_months,
-        },
-    }
+    "_round": "4.0",
+    "_message": (
+        "Round 4 computational patient model generated successfully. "
+        "Includes physiological system models, longitudinal trajectories, "
+        "risk synthesis, medication burden analysis, and confidence scoring."
+    ),
 
+    # ============================================================
+    # Parsed FHIR Data
+    # ============================================================
+
+    "patient": patient,
+
+    "conditions": parsed_conditions,
+
+    "medications": parsed_medications,
+
+    "lab_observations": parsed_labs,
+
+    "vital_observations": parsed_vitals,
+
+    "allergies": parse_section(
+        "allergies",
+        parse_allergy,
+        "AllergyIntolerance",
+    ),
+
+    "procedures": parse_section(
+        "procedures",
+        parse_procedure,
+        "Procedure",
+    ),
+
+    "immunizations": parse_section(
+        "immunizations",
+        parse_immunization,
+        "Immunization",
+    ),
+
+    "encounters": parse_section(
+        "encounters",
+        parse_encounter,
+        "Encounter",
+    ),
+
+    "parameters": {
+        "model_depth": model_depth,
+        "lookback_months": lookback_months,
+    },
+}
+    computational_layer = assemble_patient_model(
+    patient=patient,
+    lab_observations=parsed_labs["items"],
+    vital_observations=parsed_vitals["items"],
+    active_conditions=active_conditions,
+    active_medications=active_medications,
+)
+
+    model.update(computational_layer)
     logger.info(
-        "build_patient_model.complete",
-        patient_id=patient_id,
-        active_conditions=len([c for c in model["conditions"]["items"] if c.get("is_active")]),
-        active_medications=len([m for m in model["medications"]["items"] if m.get("is_active")]),
-        lab_count=model["lab_observations"]["count"],
-        vital_count=model["vital_observations"]["count"],
-    )
+    "build_patient_model.complete",
+    patient_id=patient_id,
+    active_conditions=len(active_conditions),
+    active_medications=len(active_medications),
+    lab_count=parsed_labs["count"],
+    vital_count=parsed_vitals["count"],
+    systems=list(model.get("system_models", {}).keys()),
+    overall_confidence=model.get("model_confidence", {}).get("overall"),
+)
 
     return json.dumps(model, indent=2, default=str)

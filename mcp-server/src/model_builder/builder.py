@@ -3,13 +3,6 @@ Unified computational patient model orchestration layer.
 
 Aggregates all physiological system builders into a single
 simulation-ready computational patient model.
-
-Round 4:
-- System aggregation
-- Medication profile integration
-- Comorbidity cascade integration
-- Global confidence synthesis
-- Clinical priority synthesis
 """
 
 from datetime import datetime
@@ -134,6 +127,7 @@ def assemble_patient_model(
     clinical_priorities = []
 
     # ---- CKD progression ----
+
     kdigo = renal_model.get("kdigo_risk")
     renal_projection = renal_model.get("projection")
     reno_coverage = renal_model.get("renoprotective_coverage", {})
@@ -171,6 +165,7 @@ def assemble_patient_model(
         })
 
     # ---- Missing SGLT2i ----
+
     if reno_coverage.get("coverage_score") == "missing_sglt2i_gap":
         clinical_priorities.append({
             "id": "sglt2_gap",
@@ -202,6 +197,7 @@ def assemble_patient_model(
         })
 
     # ---- Nephrotoxic burden ----
+
     if nephro_burden.get("level") in ("moderate", "high"):
         clinical_priorities.append({
             "id": "nephrotoxic_burden",
@@ -232,6 +228,7 @@ def assemble_patient_model(
         })
 
     # ---- Diabetes control ----
+
     glycemic = metabolic_model.get("glycemic_control")
 
     if glycemic in ("above_target", "well_above_target"):
@@ -262,6 +259,7 @@ def assemble_patient_model(
         })
 
     # ---- ASCVD risk ----
+
     ascvd = cardiovascular_model.get("ascvd_10yr_risk")
 
     if ascvd and ascvd.get("risk_category") in ("high", "very_high"):
@@ -292,6 +290,7 @@ def assemble_patient_model(
         })
 
     # ---- MASLD / hepatic risk ----
+
     fib4 = hepatic_model.get("fib4")
 
     if fib4 and fib4.get("risk_category") in ("intermediate", "high"):
@@ -322,12 +321,146 @@ def assemble_patient_model(
             ],
         })
 
-    # Sort descending
+    # ============================================================
+    # Cross-System Interaction Intelligence
+    # ============================================================
+
+    cross_system_risks = []
+
+    active_cascades = comorbidity_map.get("active_cascades", [])
+
+    if active_cascades:
+        for cascade in active_cascades:
+            cross_system_risks.append({
+                "cascade": cascade,
+                "impact": "accelerated_multi_system_progression",
+            })
+
+    # ============================================================
+    # Sort Priorities
+    # ============================================================
+
     clinical_priorities = sorted(
         clinical_priorities,
         key=lambda x: x.get("priority_score", 0),
         reverse=True,
     )
+
+    # ============================================================
+    # Executive Longitudinal Narrative
+    # ============================================================
+
+    dominant_priority = (
+        clinical_priorities[0]
+        if clinical_priorities
+        else None
+    )
+
+    dominant_risk_vector = (
+        dominant_priority.get("title")
+        if dominant_priority
+        else "No dominant progression vector identified"
+    )
+
+    highest_leverage_intervention = (
+        dominant_priority.get("suggested_actions", [None])[0]
+        if dominant_priority
+        else None
+    )
+
+    most_concerning_trajectory = None
+
+    if renal_projection:
+        most_concerning_trajectory = (
+            "Renal function trajectory suggests ongoing CKD progression."
+        )
+    elif metabolic_model.get("projection"):
+        most_concerning_trajectory = (
+            "Metabolic trajectory suggests worsening glycemic burden."
+        )
+    elif cardiovascular_model.get("projection"):
+        most_concerning_trajectory = (
+            "Cardiovascular trajectory suggests increasing ASCVD risk."
+        )
+
+    executive_summary = {
+        "dominant_risk_vector": dominant_risk_vector,
+        "most_concerning_trajectory": most_concerning_trajectory,
+        "highest_leverage_intervention": highest_leverage_intervention,
+    }
+
+    # ============================================================
+    # Hidden Deterioration Risks
+    # ============================================================
+
+    hidden_deterioration_risks = []
+
+    if renal_projection:
+        hidden_deterioration_risks.append({
+            "system": "renal",
+            "risk": (
+                "Progressive renal decline may be underestimated "
+                "by isolated creatinine measurements."
+            ),
+        })
+
+    if glycemic in ("above_target", "well_above_target"):
+        hidden_deterioration_risks.append({
+            "system": "metabolic",
+            "risk": (
+                "Persistent hyperglycemia may accelerate future "
+                "renal and cardiovascular disease burden."
+            ),
+        })
+
+    if ascvd and ascvd.get("risk_category") in ("high", "very_high"):
+        hidden_deterioration_risks.append({
+            "system": "cardiovascular",
+            "risk": (
+                "Elevated cardiovascular risk may converge with "
+                "renal/metabolic disease progression."
+            ),
+        })
+
+    # ============================================================
+    # Visit Urgency
+    # ============================================================
+
+    if any(
+        p.get("priority_score", 0) >= 90
+        for p in clinical_priorities
+    ):
+        visit_urgency = "high_priority_followup"
+
+    elif any(
+        p.get("priority_score", 0) >= 75
+        for p in clinical_priorities
+    ):
+        visit_urgency = "moderate_priority"
+
+    else:
+        visit_urgency = "routine_followup"
+
+    # ============================================================
+    # Why Now
+    # ============================================================
+
+    why_now = []
+
+    if renal_projection:
+        why_now.append(
+            "Renal trajectory suggests active progression."
+        )
+
+    if glycemic in ("above_target", "well_above_target"):
+        why_now.append(
+            "Metabolic control remains above target."
+        )
+
+    if active_cascades:
+        why_now.append(
+            "Multiple disease systems demonstrate converging risk."
+        )
 
     # ============================================================
     # Longitudinal Risk Summary
@@ -361,7 +494,7 @@ def assemble_patient_model(
 
     model_metadata = {
         "generated_at": datetime.utcnow().isoformat(),
-        "model_version": "4.1",
+        "model_version": "4.2",
         "model_type": "computational_patient_model",
         "stateless": True,
     }
@@ -378,8 +511,13 @@ def assemble_patient_model(
         "medication_profile": medication_profile,
         "comorbidity_map": comorbidity_map,
         "clinical_priorities": clinical_priorities,
+        "cross_system_risks": cross_system_risks,
         "longitudinal_risk_summary": longitudinal_risk_summary,
         "intervention_opportunities": intervention_opportunities,
+        "hidden_deterioration_risks": hidden_deterioration_risks,
+        "executive_summary": executive_summary,
+        "visit_urgency": visit_urgency,
+        "why_now": why_now,
         "model_confidence": model_confidence,
         "model_metadata": model_metadata,
     }

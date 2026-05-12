@@ -1,15 +1,30 @@
 """
-Phantom MCP Server - HTTP Application Entry Point
+Phantom MCP Server — Clinical Intelligence Runtime
 
-Wires together:
-- The FastMCP server (with all tools registered) from src.mcp_instance
-- A FastAPI application that mounts the MCP streamable HTTP app
-- CORS middleware (required for Po platform browser-based connections)
-- A health check endpoint
-- The lifespan context manager for the MCP session
+Phantom is an advanced computational clinical intelligence platform
+that transforms longitudinal FHIR patient records into simulation-ready
+digital patient models.
 
-This module mirrors the structure of the Prompt Opinion Python reference
-implementation, with our novel clinical tooling layered on top.
+Core capabilities:
+- Computational patient modeling
+- Longitudinal disease trajectory analysis
+- Future risk simulation
+- Intervention comparison and optimization
+- Cross-system physiological reasoning
+- Clinician-oriented pre-visit intelligence
+
+The server exposes a FastMCP interface compatible with:
+- Prompt Opinion
+- MCP-compatible orchestration systems
+- Clinical AI copilots
+- Longitudinal simulation workflows
+
+Architecture:
+- FastMCP over Streamable HTTP
+- FastAPI application runtime
+- SMART/SHARP-on-FHIR context support
+- Evidence-grounded simulation engines
+- Multi-system physiological modeling
 """
 
 import logging
@@ -26,7 +41,7 @@ from src.config import get_settings
 from src.mcp_instance import mcp
 
 # ============================================================
-# Logging Setup
+# Logging Configuration
 # ============================================================
 
 settings = get_settings()
@@ -42,117 +57,274 @@ structlog.configure(
         structlog.contextvars.merge_contextvars,
         structlog.processors.add_log_level,
         structlog.processors.TimeStamper(fmt="iso"),
-        structlog.dev.ConsoleRenderer() if settings.dev_mode
+
+        structlog.dev.ConsoleRenderer()
+        if settings.dev_mode
         else structlog.processors.JSONRenderer(),
     ],
+
     wrapper_class=structlog.make_filtering_bound_logger(
         getattr(logging, settings.log_level.upper())
     ),
+
     context_class=dict,
+
     logger_factory=structlog.PrintLoggerFactory(),
+
     cache_logger_on_first_use=True,
 )
 
 logger = structlog.get_logger(__name__)
 
-
 # ============================================================
-# FastAPI Application with MCP Lifespan
+# FastAPI Lifespan
 # ============================================================
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
-    Manages the FastMCP session lifecycle alongside the FastAPI app.
-    The MCP session manager must be running for the streamable HTTP
-    transport to function.
-    """
-    logger.info("phantom.lifespan.starting")
-    async with mcp.session_manager.run():
-        logger.info("phantom.lifespan.mcp_ready")
-        yield
-    logger.info("phantom.lifespan.stopped")
+    Coordinates the FastMCP session lifecycle.
 
+    The MCP session manager powers:
+    - Streamable HTTP transport
+    - MCP tool execution
+    - SHARP context propagation
+    - Clinical simulation runtime state
+    """
+
+    logger.info(
+        "phantom.runtime.starting",
+        version="1.0",
+        dev_mode=settings.dev_mode,
+    )
+
+    async with mcp.session_manager.run():
+
+        logger.info(
+            "phantom.runtime.ready",
+            transport="streamable_http",
+            clinical_engine="active",
+        )
+
+        yield
+
+    logger.info(
+        "phantom.runtime.stopped",
+    )
+
+# ============================================================
+# FastAPI Application
+# ============================================================
 
 app = FastAPI(
-    title="Phantom MCP Server",
-    description="Clinical simulation engine - patient digital twin for clinical reasoning",
-    version="0.1.0",
+
+    title="Phantom Clinical Intelligence Platform",
+
+    description=(
+        "Advanced longitudinal clinical intelligence engine "
+        "for computational patient modeling, disease trajectory "
+        "simulation, and intervention optimization."
+    ),
+
+    version="1.0.0",
+
     lifespan=lifespan,
 )
 
-# CORS - required for Prompt Opinion to connect from browser context
+# ============================================================
+# CORS Configuration
+# ============================================================
+
+# Required for:
+# - Prompt Opinion browser-based connections
+# - MCP-compatible orchestration systems
+# - Local development
+# - Cross-origin simulation clients
+
 app.add_middleware(
     CORSMiddleware,
+
     allow_origins=["*"],
+
     allow_methods=["*"],
+
     allow_headers=["*"],
 )
 
-
 # ============================================================
-# Health and Info Endpoints
+# Health Endpoint
 # ============================================================
 
 @app.get("/health")
 async def health_check() -> JSONResponse:
-    """Health check endpoint for monitoring and Docker health checks."""
+    """
+    Runtime health endpoint.
+
+    Used for:
+    - Deployment validation
+    - Docker/container health checks
+    - Infrastructure monitoring
+    """
+
     return JSONResponse({
+
         "status": "healthy",
-        "service": "phantom-mcp-server",
-        "version": "0.1.0",
+
+        "service": "phantom-clinical-intelligence-platform",
+
+        "version": "1.0.0",
+
+        "runtime": "active",
+
+        "simulation_engine": "ready",
+
+        "capabilities": [
+
+            "computational_patient_modeling",
+
+            "trajectory_forecasting",
+
+            "intervention_simulation",
+
+            "longitudinal_risk_analysis",
+
+            "clinical_intelligence_generation",
+        ],
     })
 
+# ============================================================
+# Info Endpoint
+# ============================================================
 
 @app.get("/info")
 async def info() -> JSONResponse:
-    """Server info endpoint (the root path is reserved for the MCP app)."""
+    """
+    Public runtime metadata endpoint.
+
+    Provides:
+    - server metadata
+    - available clinical tools
+    - supported extensions
+    - capability overview
+    """
+
     return JSONResponse({
-        "service": "Phantom MCP Server",
-        "version": "0.1.0",
-        "description": "Clinical simulation engine - patient digital twin",
-        "tools": [
-            "build_patient_model",
-            "simulate_scenario",
-            "compare_interventions",
+
+        "service": "Phantom Clinical Intelligence Platform",
+
+        "version": "1.0.0",
+
+        "description": (
+            "Computational clinical intelligence engine "
+            "for longitudinal physiological modeling and "
+            "future risk simulation."
+        ),
+
+        "core_capabilities": [
+
+            "Computational patient modeling",
+
+            "Disease trajectory forecasting",
+
+            "Intervention impact simulation",
+
+            "Longitudinal multi-system risk analysis",
+
+            "Clinical decision support synthesis",
         ],
-        "extensions": {
+
+        "tools": [
+
+            {
+                "name": "build_patient_model",
+
+                "description": (
+                    "Builds a simulation-ready computational "
+                    "patient model from longitudinal FHIR data."
+                ),
+            },
+
+            {
+                "name": "simulate_scenario",
+
+                "description": (
+                    "Simulates future disease trajectories "
+                    "under intervention or inaction scenarios."
+                ),
+            },
+
+            {
+                "name": "compare_interventions",
+
+                "description": (
+                    "Compares competing treatment strategies "
+                    "using longitudinal multi-system modeling."
+                ),
+            },
+        ],
+
+        "supported_context_extensions": {
+
             "fhir_context": "ai.promptopinion/fhir-context",
+        },
+
+        "transport": {
+
+            "protocol": "MCP",
+
+            "mode": "streamable_http",
         },
     })
 
+# ============================================================
+# Mount MCP Application
+# ============================================================
 
-# ============================================================
-# Mount the MCP Streamable HTTP App
-# ============================================================
-# This must be mounted LAST, at the root path. The MCP server lives at "/".
-# Prompt Opinion will register the URL of this server (e.g., https://your-host/)
-# and the MCP protocol communication happens at the root.
+# IMPORTANT:
+#
+# MCP must be mounted at the root path.
+#
+# Prompt Opinion registers the root server URL:
+#   https://your-server/
+#
+# MCP protocol communication occurs directly at "/"
 
 app.mount("/", mcp.streamable_http_app())
-
 
 # ============================================================
 # Entry Point
 # ============================================================
 
 def main() -> None:
-    """Start the Phantom MCP server."""
+    """
+    Start the Phantom Clinical Intelligence runtime.
+    """
+
     logger.info(
-        "phantom.server.starting",
+
+        "phantom.server.launch",
+
         host=settings.host,
+
         port=settings.port,
+
         dev_mode=settings.dev_mode,
+
+        log_level=settings.log_level,
     )
 
     uvicorn.run(
+
         "src.server:app",
+
         host=settings.host,
+
         port=settings.port,
+
         log_level=settings.log_level.lower(),
+
         reload=settings.dev_mode,
     )
-
 
 if __name__ == "__main__":
     main()
