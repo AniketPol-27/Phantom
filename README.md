@@ -110,7 +110,7 @@ The Nexus Agent acts as the bridge between:
 - Custom middleware integration
 
 ### Published Endpoint
-`<ADD_PHANTOM_NEXUS_AGENT_LINK_HERE>`
+`<https://app.promptopinion.ai/marketplace/agent/019e1a0a-9941-716e-bd55-c2a689f6530a>`
 
 ---
 
@@ -149,7 +149,7 @@ while integrating:
 - Custom longitudinal reasoning systems
 
 ### Published Endpoint
-`<ADD_PHANTOM_MCP_SERVER_LINK_HERE>`
+`<https://app.promptopinion.ai/marketplace/mcp/019e134e-31b9-7768-8c28-c76a21743bb2>`
 
 ---
 
@@ -183,7 +183,7 @@ Custom middleware was implemented to support:
 - Custom middleware translation layers
 
 ### Published Endpoint
-`<ADD_PHANTOM_SPECIALIST_AGENT_LINK_HERE>`
+`<https://app.promptopinion.ai/marketplace/agent/019e1694-7247-7963-a25f-1ddcc953abf8>`
 
 ---
 
